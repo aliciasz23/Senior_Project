@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<title name = "Chatbot"></title>
+
+<link rel = "Stylesheet" type = "text/css" href = "chatStyle.css">
+
+</head>
+<body>
+
+<button class = "openButton" onclick = "openForm()"> chatbot</button>
+
+<div class = "chatbot">
+<div class = "chatbotLogo">
+
+<form>
+
+<h1> Chatbot </h1>
+<img src = "images/chatbotLogo.jpeg" alt = "chatbot Logo"/>
+<textarea placeholder = "Hello, Ask a question!"></textarea>
+
+<button type = "submit" class = "button"> send </button>
+<button type = "button" class = "buttonClose" onclick = "closeForm()"> cancel </button>
+
+</form>
+
+</div>
+</div>
+
+<script>
+     document .querySelector(".openButton").addEventListener("click", openForm);
+     document .querySelector(".buttonClose").addEventListener("click", closeForm);
+        function openForm() {
+            document.querySelector(".chatbot").style.display = "block";
+
+        }
+
+        function closeForm() {
+            document.querySelector(".chatbot").style.display = "none";
+        }
+
+</script>
+</body>
+</html>

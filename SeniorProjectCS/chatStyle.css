@@ -1,0 +1,57 @@
+body {
+    color: #00BFFF;
+ }
+ *{
+    box-sizing: border-box;
+}
+
+.openButton {
+    background-color: #20B2AA;
+    color: #FFA500;
+    padding: 15px 20px;
+    cursor: printer;
+    position: fixed;
+    bottom: 20px;
+    width: 200px;
+    font-size: 24px;
+}
+
+
+.chatbot {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    border: 2px solid #FF6347;
+}
+
+form textarea {
+    width: 100%;
+    font-size: 15px;
+    padding: 15px;
+    color: #000080;
+    border: 2px Solid #2F4F4F;
+    max-height: 100px;
+    min-height: 100px;
+    font-size: 16px;
+}
+
+
+
+form .button {
+    background-color: #008000;
+    color: #FF0000;
+    padding: 20px 20px;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    
+}
+
+form .buttonClose {
+    background-color: #00FF7F;
+    color: #A52A2A;
+    width: 100%;
+    font-size: 16px;
+}
+
