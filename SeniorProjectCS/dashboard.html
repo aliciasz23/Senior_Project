@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Endzone Intel</title>
-    <!-- Include Tailwind CSS-->
+    <title>Dashboard - Endzone Intel</title>
+    <!-- Include Tailwind CSS via CDN -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css"
@@ -23,7 +23,6 @@
         >
       </div>
     </header>
-
     <!-- Main Content -->
     <div class="container mx-auto mt-8 h-screen flex">
       <!-- Add h-screen class to the main content area -->
@@ -61,60 +60,31 @@
       <!-- Main Content Area -->
       <main class="w-3/4 p-4 bg-white flex flex-col">
         <!-- Add flex and flex-col here -->
-        <!-- Logo -->
-        <div class="text-center mb-4">
-          <img
-            src="images/EndzoneIntel.png"
-            alt="Endzone Intel Logo"
-            class="w-96 h-72 mx-auto"
-          />
+        <!-- Dashboard Content -->
+        <div>
+          <h1 class="text-3xl font-semibold mb-4">Dashboard</h1>
+
+          <!-- Sample Dashboard Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Sample Card 1 -->
+            <div class="bg-blue-100 p-4 rounded-md shadow-md">
+              <h2 class="text-lg font-semibold mb-2">Total Users</h2>
+              <p class="text-xl font-bold">1,234</p>
+            </div>
+
+            <!-- Sample Card 2 -->
+            <div class="bg-green-100 p-4 rounded-md shadow-md">
+              <h2 class="text-lg font-semibold mb-2">Active Users</h2>
+              <p class="text-xl font-bold">789</p>
+            </div>
+
+            <!-- Sample Card 3 -->
+            <div class="bg-yellow-100 p-4 rounded-md shadow-md">
+              <h2 class="text-lg font-semibold mb-2">New Signups</h2>
+              <p class="text-xl font-bold">456</p>
+            </div>
+          </div>
         </div>
-        <!-- Search Bar -->
-        <div class="text-center">
-          <form
-            action="#"
-            method="GET"
-            class="max-w-md mx-auto"
-            id="searchForm"
-          >
-            <input
-              type="text"
-              class="w-full px-4 py-2 rounded-full shadow-md border-2 border-gray-300"
-              placeholder="Search..."
-              name="search"
-              id="searchInput"
-            />
-            <button
-              type="submit"
-              class="mt-2 bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600"
-            >
-              Search
-            </button>
-          </form>
-        </div>
-
-        <!-- Dummy Search Results Container -->
-        <div id="searchResults" class="mt-4"></div>
-
-        <script>
-          const searchForm = document.getElementById("searchForm");
-          const searchInput = document.getElementById("searchInput");
-          const searchResultsContainer =
-            document.getElementById("searchResults");
-
-          searchForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            const searchTerm = searchInput.value.trim();
-
-            // Replace this with actual API search logic
-            // For simplicity, this example just displays a message with the search term
-            const searchResults = document.createElement("p");
-            searchResults.textContent = `Search results for: ${searchTerm}`;
-            searchResultsContainer.innerHTML = "";
-            searchResultsContainer.appendChild(searchResults);
-          });
-        </script>
       </main>
     </div>
 
