@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team Stats - Endzone Intel</title>
+    <!-- Include Tailwind CSS via CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css"
+    />
+  </head>
+  <body class="bg-gray-100 font-sans flex flex-col h-screen">
+    <!-- Set min-h-screen on the body-->
+    <!-- Header -->
+    <header class="bg-blue-700 text-white p-4">
+      <div class="container mx-auto">
+        <!--Endzone Intel to redirect to homepage-->
+        <a
+          href="SeniorProjectWeb.html"
+          class="text-2xl font-semibold hover:underline"
+          >Endzone Intel</a
+        >
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto mt-8 flex-grow flex">
+      <!-- Sidebar -->
+      <aside class="w-1/4 p-4 bg-gray-200">
+        <nav>
+          <ul>
+            <li class="mb-2">
+              <a
+                href="SeniorProjectWeb.html"
+                class="text-blue-500 hover:underline"
+                >Home</a
+              >
+            </li>
+            <li class="mb-2">
+              <a href="dashboard.html" class="text-blue-500 hover:underline"
+                >Dashboard</a
+              >
+            </li>
+            <li class="mb-2">
+              <a href="playerStats.html" class="text-blue-500 hover:underline"
+                >Player Stats</a
+              >
+            </li>
+            <li class="mb-2">
+              <a href="teamStats.html" class="text-blue-500 hover:underline"
+                >Team Stats</a
+              >
+            </li>
+            <!-- Add more sidebar links as needed -->
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="w-3/4 p-4 bg-white overflow-y-auto">
+        <div>
+          <h1 class="text-3xl font-semibold mb-4">Team Stats</h1>
+
+          <!-- Dummy Team Data (Replace with actual API fetch) -->
+          <div
+            id="teamList"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+          >
+            <!-- Dummy Team Data (Replace with actual API fetch) -->
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/ariLogo.png"
+                alt="ARI"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Arizona Cardinals</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/atlLogo.png"
+                alt="ATL"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Atlanta Falcons</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/balLogo.png"
+                alt="BAL"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Baltimore Ravens</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/bufLogo.png"
+                alt="BUF"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Buffalo Bills</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/carLogo.png"
+                alt="CAR"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Carolina Panthers</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/chiLogo.png"
+                alt="CHI"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Chicago Bears</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/cinLogo.png"
+                alt="CIN"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Cincinnati Bengals</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/cleLogo.png"
+                alt="CLE"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Cleveland Browns</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/dalLogo.png"
+                alt="DAL"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Dallas Cowboys</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/denLogo.png"
+                alt="DEN"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Denver Broncos</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/detLogo.png"
+                alt="DET"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Detroit Lions</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/gbLogo.png"
+                alt="GB"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Green Bay Packers</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/houLogo.png"
+                alt="HOU"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Houston Texans</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/indLogo.png"
+                alt="IND"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Indianapolis Colts</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/jaxLogo.png"
+                alt="JAX"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Jacksonville Jaguars</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/kcLogo.png"
+                alt="KC"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Kansas City Chiefs</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/lvLogo.png"
+                alt="LV"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Las Vegas Raiders</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/lacLogo.png"
+                alt="LAC"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Los Angeles Chargers</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/larLogo.png"
+                alt="LAR"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Los Angeles Rams</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/miaLogo.png"
+                alt="MIA"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Miami Dolphins</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/minLogo.png"
+                alt="MIN"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Minnesota Vikings</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/neLogo.png"
+                alt="NE"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">New England Patriots</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/noLogo.png"
+                alt="NO"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">New Orleans Saints</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/nygLogo.png"
+                alt="NYG"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">New York Giants</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/nyjLogo.png"
+                alt="NYJ"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">New York Jets</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/phiLogo.png"
+                alt="PHI"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Philadelphia Eagles</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/pitLogo.png"
+                alt="PIT"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Pittsburgh Steelers</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/sfLogo.png"
+                alt="SF"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">San Francisco 49ers</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/seaLogo.png"
+                alt="SEA"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Seattle Seahawks</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/tbLogo.png"
+                alt="TB"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Tampa Bay Buccaneers</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/tenLogo.png"
+                alt="TEN"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Tennessee Titans</h2>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+              <img
+                src="images/wasLogo.png"
+                alt="WAS"
+                class="w-full h-32 object-contain mb-2"
+              />
+              <h2 class="text-lg font-semibold">Washington Commanders</h2>
+            </div>
+          </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Chatbot Container -->
+      <div id="chatbotContainer"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-blue-700 text-white p-4">
+      <div class="container mx-auto">
+        <p class="text-sm">&copy; 2023 Endzone Intel</p>
+      </div>
+    </footer>
+
+    <!-- Chatbot Script -->
+    <script>
+      function loadChatbot() {
+        fetch("chatbot.html")
+          .then((response) => response.text())
+          .then((data) => {
+            const chatbotContainer =
+              document.getElementById("chatbotContainer");
+            chatbotContainer.innerHTML = data;
+          });
+      }
+
+      window.addEventListener("load", loadChatbot);
+
+      function toggleChatbot() {
+        const chatbot = document.querySelector(".chatbot");
+        chatbot.classList.toggle("hidden");
+        const chatbotButton = document.getElementById("chatbotButton");
+        chatbotButton.classList.toggle("hidden");
+      }
+    </script>
+  </body>
+</html>
