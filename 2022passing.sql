@@ -52,7 +52,7 @@ CREATE TABLE `2022passing` (
 -- Dumping data for table `2022passing`
 --
 
-INSERT INTO `2022passing` (`Id`, `Player`, `Team`, `Pos`, `Games`, `Cmp`, `Att`, `Cmp%`, `Yds`, `TD`, `INT`, `Lng`, `Y/C`, `Y/G`, `Rate`, `QBR`, `4QC`, `GWD`) VALUES
+INSERT INTO `2022passing` (`Id`, `Player`, `Team`, `Pos`, `Games`, `Cmp`, `Att`, `CmpP`, `Yds`, `TD`, `INT`, `Lng`, `YPC`, `YPG`, `Rate`, `QBR`, `4QC`, `GWD`) VALUES
 (1, 'Aaron Rodgers', 'GNB', 'QB', 17, 350, 542, 65, 3695, 26, 12, 58, 11, 217, 91, 41, 3, 4),
 (2, 'Andy Dalton', 'NOR', 'QB', 14, 252, 378, 67, 2871, 18, 9, 64, 11, 205, 95, 53, 1, 1),
 (3, 'Anthony Brown', 'BAL', 'QB', 2, 22, 49, 45, 302, 0, 2, 47, 14, 151, 48, 0, 0, 0),
