@@ -41,13 +41,32 @@
               >
             </li>
             <li class="mb-2">
-              <a href="playerStats.html" class="text-blue-500 hover:underline"
-                >Player Stats</a
+              <a href="teamStats.html" class="text-blue-500 hover:underline"
+                >Team Stats</a
               >
             </li>
             <li class="mb-2">
-              <a href="teamStats.html" class="text-blue-500 hover:underline"
-                >Team Stats</a
+              <a href="passingStats.html" class="text-blue-500 hover:underline"
+                >Passing Stats</a
+              >
+            </li>
+            <li class="mb-2">
+              <a href="rushingStats.html" class="text-blue-500 hover:underline"
+                >Rushing Stats</a
+              >
+            </li>
+            <li class="mb-2">
+              <a
+                href="receivingStats.html"
+                class="text-blue-500 hover:underline"
+                >Recieving Stats</a
+              >
+            </li>
+            <li class="mb-2">
+              <a
+                href="defensiveStats.html"
+                class="text-blue-500 hover:underline"
+                >Defensive Stats</a
               >
             </li>
           </ul>
@@ -144,29 +163,31 @@
 <script>
   // Function to fetch data from the API and store it in a variable
   async function fetchDataAndStore() {
-      try {
-          const response = await fetch('http://127.0.0.1:3000/2022/passing/player/1');
-          
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-  
-          const data = await response.json();
-          // Store the fetched data in a variable or do further processing
-          const jsonData = data;
-  
-          // Log the received JSON data to the console
-          console.log('Received JSON data:', jsonData);
-  
-          // You can use jsonData in further operations as needed
-          // For example, accessing specific properties: jsonData.propertyName
-      } catch (error) {
-          console.error('There was a problem with the fetch operation:', error);
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:3000/2022/passing/player/1"
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
+
+      const data = await response.json();
+      // Store the fetched data in a variable or do further processing
+      const jsonData = data;
+
+      // Log the received JSON data to the console
+      console.log("Received JSON data:", jsonData);
+
+      // You can use jsonData in further operations as needed
+      // For example, accessing specific properties: jsonData.propertyName
+    } catch (error) {
+      console.error("There was a problem with the fetch operation:", error);
+    }
   }
-  
+
   // Call the function when the HTML document is loaded
-  document.addEventListener('DOMContentLoaded', () => {
-      fetchDataAndStore(); // Call the function to fetch and store JSON data
+  document.addEventListener("DOMContentLoaded", () => {
+    fetchDataAndStore(); // Call the function to fetch and store JSON data
   });
-  </script>
+</script>
