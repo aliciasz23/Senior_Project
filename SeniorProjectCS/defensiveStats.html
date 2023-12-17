@@ -174,7 +174,7 @@
             child.classList.add("border", "border-blue-700", "px-4", "py-2");
           }
 
-          Name.textContent = player.Player;
+          Name.textContent = player.Player.split('_').join(' ');
           Team.textContent = player.Team;
           Pos.textContent = player.Pos;
           Games.textContent = player.G;
