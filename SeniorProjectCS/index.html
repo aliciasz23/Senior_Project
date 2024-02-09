@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Endzone Intel</title>
+    <!-- Include Tailwind CSS-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css"
+    />
+  </head>
+  <body class="bg-gray-100 font-sans">
+    <!-- Header -->
+    <header class="bg-blue-700 text-white p-4">
+      <div class="container mx-auto">
+        <a
+          href="SeniorProjectWeb.html"
+          class="text-2xl font-semibold hover:underline"
+          >Endzone Intel</a
+        >
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto mt-8 h-screen flex">
+      <!-- Sidebar -->
+      <aside class="w-1/4 p-4 bg-gray-200">
+        <nav>
+          <ul>
+            <li class="mb-2">
+              <a
+                href="SeniorProjectWeb.html"
+                class="text-blue-500 hover:underline"
+                >Home</a
+              >
+            </li>
+            <li class="mb-2">
+              <a href="dashboard.html" class="text-blue-500 hover:underline"
+                >Dashboard</a
+              >
+            </li>
+            <li class="mb-2">
+              <a href="teamStats.html" class="text-blue-500 hover:underline"
+                >Team Stats</a
+              >
+            </li>
+            <li class="mb-2">
+              <a href="passingStats.html" class="text-blue-500 hover:underline"
+                >2022 Passing Stats</a
+              >
+
+            <li class="mb-2">
+                <a href="2023passingStats.html" class="text-blue-500 hover:underline"
+                  >2023 Passing Stats</a
+                >
+            </li>
+            <li class="mb-2">
+              <a href="rushingStats.html" class="text-blue-500 hover:underline"
+                >Rushing Stats</a
+              >
+            </li>
+            <li class="mb-2">
+              <a
+                href="receivingStats.html"
+                class="text-blue-500 hover:underline"
+                >Recieving Stats</a
+              >
+            </li>
+            <li class="mb-2">
+              <a
+                href="defensiveStats.html"
+                class="text-blue-500 hover:underline"
+                >Defensive Stats</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="w-3/4 p-4 bg-white flex flex-col">
+        <div class="text-center mb-4">
+          <img
+            src="images/EndzoneIntel.png"
+            alt="Endzone Intel Logo"
+            class="w-96 h-72 mx-auto"
+          />
+        </div>
+        <div class="text-center">
+          <form
+            action="#"
+            method="GET"
+            class="max-w-md mx-auto"
+            id="searchForm"
+          >
+            <input
+              type="text"
+              class="w-full px-4 py-2 rounded-full shadow-md border-2 border-gray-300"
+              placeholder="Search..."
+              name="search"
+              id="searchInput"
+            />
+            <button
+              type="submit"
+              class="mt-2 bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600"
+            >
+              Search
+            </button>
+          </form>
+        </div>
+        <div id="searchResults" class="mt-4"></div>
+
+        <!-- Chatbot Container -->
+        <div id="chatbotContainer"></div>
+      </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-blue-700 text-white p-4 mt-auto">
+      <div class="container mx-auto">
+        <p class="text-sm">&copy; 2023 Endzone Intel</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<!-- Script for Search Bar and Chatbot Integration -->
+<script>
+  const searchForm = document.getElementById("searchForm");
+  const searchInput = document.getElementById("searchInput");
+  const searchResultsContainer = document.getElementById("searchResults");
+  const chatbotContainer = document.getElementById("chatbotContainer");
+
+  searchForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const searchTerm = searchInput.value.trim();
+
+    // Replace this with actual API search logic
+    // For simplicity, this example just displays a message with the search term
+    const searchResults = document.createElement("p");
+    searchResults.textContent = `Search results for: ${searchTerm}`;
+    searchResultsContainer.innerHTML = "";
+    searchResultsContainer.appendChild(searchResults);
+  });
+
+  // Chatbot code
+  function loadChatbot() {
+    fetch("chatbot.html")
+      .then((response) => response.text())
+      .then((data) => {
+        const chatbotContainer = document.getElementById("chatbotContainer");
+        chatbotContainer.innerHTML = data;
+      });
+  }
+
+  window.addEventListener("load", loadChatbot);
+
+  function toggleChatbot() {
+    const chatbot = document.querySelector(".chatbot");
+    chatbot.classList.toggle("hidden");
+    const chatbotButton = document.getElementById("chatbotButton");
+    chatbotButton.classList.toggle("hidden");
+  }
+</script>
+
+<script>
+  // Function to fetch data from the API and store it in a variable
+  async function fetchDataAndStore() {
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:3000/2022/passing/player/1"
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      // Store the fetched data in a variable or do further processing
+      const jsonData = data;
+
+      // Log the received JSON data to the console
+      console.log("Received JSON data:", jsonData);
+
+      // You can use jsonData in further operations as needed
+      // For example, accessing specific properties: jsonData.propertyName
+    } catch (error) {
+      console.error("There was a problem with the fetch operation:", error);
+    }
+  }
+
+  // Call the function when the HTML document is loaded
+  document.addEventListener("DOMContentLoaded", () => {
+    fetchDataAndStore(); // Call the function to fetch and store JSON data
+  });
+</script>
