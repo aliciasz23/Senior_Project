@@ -47,6 +47,15 @@ app.get('/2022/passing',(req, res) => {
   });
 });
 
+app.get('/2023/passing',(req, res) => {
+  let sqlQuery = "SELECT * FROM 2023passing";
+  
+  let query = conn.query(sqlQuery, (err, results) => {
+    if(err) throw err;
+    res.send(apiResponse(results));
+  });
+});
+
 app.get('/2022/passing/player/:id',(req, res) => {
   let sqlQuery = "SELECT * FROM 2022passing WHERE id=" + req.params.id;
   

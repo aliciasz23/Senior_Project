@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Passing Stats - Endzone Intel</title>
+    <title>2022 Passing Stats - Endzone Intel</title>
     <!-- Include Tailwind CSS via CDN -->
     <link
       rel="stylesheet"
@@ -48,8 +48,13 @@
             </li>
             <li class="mb-2">
               <a href="passingStats.html" class="text-blue-500 hover:underline"
-                >Passing Stats</a
+                >2022 Passing Stats</a
               >
+
+            <li class="mb-2">
+                <a href="2023passingStats.html" class="text-blue-500 hover:underline"
+                  >2023 Passing Stats</a
+                >
             </li>
             <li class="mb-2">
               <a href="rushingStats.html" class="text-blue-500 hover:underline"
@@ -78,7 +83,7 @@
       <main class="w-3/4 p-4 bg-white overflow-y-auto">
         <!-- Passing Stats Content -->
         <div>
-          <h1 class="text-3xl font-semibold mb-4">Passing Stats</h1>
+          <h1 class="text-3xl font-semibold mb-4">2022 Passing Stats</h1>
           <div class="overflow-x-auto">
             <table
               id="passingStatsTable"
@@ -87,6 +92,7 @@
               <thead>
                 <tr>
                   <th class="border border-blue-700 px-4 py-2">Player</th>
+                  <th class="border border-blue-700 px-4 py-2">Grade</th>
                   <th class="border border-blue-700 px-4 py-2">Team</th>
                   <th class="border border-blue-700 px-4 py-2">Pos</th>
                   <th class="border border-blue-700 px-4 py-2">Games</th>
@@ -152,6 +158,7 @@
           const row = tableBody.insertRow();
 
           const Name = row.insertCell();
+          const Grade = row.insertCell();
           const Team = row.insertCell();
           const Pos = row.insertCell();
           const Games = row.insertCell();
@@ -188,6 +195,31 @@
           Rate.textContent = player.Rate;
           QBR.textContent = player.QBR;
           GWDs.textContent = player.GWD;
+
+          if(player.grade > 90)
+          {
+            Grade.textContent = "S"
+          }
+          else if(player.grade > 80)
+          {
+            Grade.textContent = "A"
+          }
+          else if(player.grade > 70)
+          {
+            Grade.textContent = "B"
+          }
+          else if(player.grade > 60)
+          {
+            Grade.textContent = "C"
+          }
+          else if(player.grade > 50)
+          {
+            Grade.textContent = "D"
+          }
+          else
+          {
+            Grade.textContent = "F"
+          }
         });
       })
       .catch((error) => console.error("Error fetching data:", error));

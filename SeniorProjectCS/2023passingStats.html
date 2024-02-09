@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2023 Passing Stats - Endzone Intel</title>
+    <!-- Include Tailwind CSS via CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css"
+    />
+  </head>
+  <body class="bg-gray-100 font-sans min-h-screen">
+    <!-- Header -->
+    <header class="bg-blue-700 text-white p-4">
+      <div class="container mx-auto">
+        <!-- Endzone Intel Homepage Redirect -->
+        <a
+          href="SeniorProjectWeb.html"
+          class="text-2xl font-semibold hover:underline"
+          >Endzone Intel</a
+        >
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto mt-8 h-screen flex">
+      <!-- Sidebar -->
+      <aside class="w-1/4 p-4 bg-gray-200">
+        <nav>
+          <ul>
+            <li class="mb-2">
+              <a
+                href="SeniorProjectWeb.html"
+                class="text-blue-500 hover:underline"
+                >Home</a
+              >
+            </li>
+            <li class="mb-2">
+              <a href="dashboard.html" class="text-blue-500 hover:underline"
+                >Dashboard</a
+              >
+            </li>
+            <li class="mb-2">
+              <a href="teamStats.html" class="text-blue-500 hover:underline"
+                >Team Stats</a
+              >
+            </li>
+            <li class="mb-2">
+              <a href="passingStats.html" class="text-blue-500 hover:underline"
+                >2022 Passing Stats</a
+              >
+
+            <li class="mb-2">
+                <a href="2023passingStats.html" class="text-blue-500 hover:underline"
+                  >2023 Passing Stats</a
+                >
+            
+            </li>
+            <li class="mb-2">
+              <a href="rushingStats.html" class="text-blue-500 hover:underline"
+                >Rushing Stats</a
+              >
+            </li>
+            <li class="mb-2">
+              <a
+                href="receivingStats.html"
+                class="text-blue-500 hover:underline"
+                >Recieving Stats</a
+              >
+            </li>
+            <li class="mb-2">
+              <a
+                href="defensiveStats.html"
+                class="text-blue-500 hover:underline"
+                >Defensive Stats</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="w-3/4 p-4 bg-white overflow-y-auto">
+        <!-- Passing Stats Content -->
+        <div>
+          <h1 class="text-3xl font-semibold mb-4">2023 Passing Stats</h1>
+          <div class="overflow-x-auto">
+            <table
+              id="passingStatsTable"
+              class="table-auto border-collapse border"
+            >
+              <thead>
+                <tr>
+                  <th class="border border-blue-700 px-4 py-2">Player</th>
+                  <th class="border border-blue-700 px-4 py-2">Grade</th>
+                  <th class="border border-blue-700 px-4 py-2">Team</th>
+                  <th class="border border-blue-700 px-4 py-2">Pos</th>
+                  <th class="border border-blue-700 px-4 py-2">Games</th>
+                  <th class="border border-blue-700 px-4 py-2">Comps</th>
+                  <th class="border border-blue-700 px-4 py-2">Ampts</th>
+                  <th class="border border-blue-700 px-4 py-2">Comp%</th>
+                  <th class="border border-blue-700 px-4 py-2">Yds</th>
+                  <th class="border border-blue-700 px-4 py-2">Tds</th>
+                  <th class="border border-blue-700 px-4 py-2">Ints</th>
+                  <th class="border border-blue-700 px-4 py-2">LNG</th>
+                  <th class="border border-blue-700 px-4 py-2">YPC</th>
+                  <th class="border border-blue-700 px-4 py-2">YPG</th>
+                  <th class="border border-blue-700 px-4 py-2">Rate</th>
+                  <th class="border border-blue-700 px-4 py-2">QBR</th>
+                  <th class="border border-blue-700 px-4 py-2">GWDs</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </main>
+      <!-- Chatbot Container -->
+      <div id="chatbotContainer"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-blue-700 text-white p-4">
+      <div class="container mx-auto">
+        <p class="text-sm">&copy; 2023 Endzone Intel</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<script>
+    function loadChatbot() {
+      fetch("chatbot.html")
+        .then((response) => response.text())
+        .then((data) => {
+          const chatbotContainer = document.getElementById("chatbotContainer");
+          chatbotContainer.innerHTML = data;
+        });
+    }
+  
+    window.addEventListener("load", loadChatbot);
+  
+    function toggleChatbot() {
+      const chatbot = document.querySelector(".chatbot");
+      chatbot.classList.toggle("hidden");
+      const chatbotButton = document.getElementById("chatbotButton");
+      chatbotButton.classList.toggle("hidden");
+    }
+
+    function fetchPassingStats() {
+    fetch("http://127.0.0.1:3000/2023/passing/")
+      .then((response) => response.json())
+      .then((data) => {
+        const tableBody = document.getElementById("passingStatsTable");
+        // Loop through the fetched data and create table rows
+        data.response.forEach((player) => {
+          const row = tableBody.insertRow();
+
+          const Name = row.insertCell();
+          const Grade = row.insertCell();
+          const Team = row.insertCell();
+          const Pos = row.insertCell();
+          const Games = row.insertCell();
+          const Comps = row.insertCell();
+          const Atts = row.insertCell();
+          const CompPerc = row.insertCell();
+          const Yds = row.insertCell();
+          const Tds = row.insertCell();
+          const Ints = row.insertCell();
+          const Lng = row.insertCell();
+          const YPC = row.insertCell();
+          const YPG = row.insertCell();
+          const Rate = row.insertCell();
+          const QBR = row.insertCell();
+          const GWDs = row.insertCell();
+
+          for (child of row.children) {
+            child.className = "border border-blue-500 px-4 py-2";
+          }
+
+          Name.textContent = player.Player.split('_').join(' ');
+          Team.textContent = player.Team;
+          Pos.textContent = player.Pos;
+          Games.textContent = player.Games;
+          Comps.textContent = player.Cmp;
+          Atts.textContent = player.Att;
+          CompPerc.textContent = player.CmpP;
+          Yds.textContent = player.Yds;
+          Tds.textContent = player.TD;
+          Ints.textContent = player.INT;
+          Lng.textContent = player.Lng;
+          YPC.textContent = player.YPC;
+          YPG.textContent = player.YPG;
+          Rate.textContent = player.Rate;
+          QBR.textContent = player.QBR;
+          GWDs.textContent = player.GWD;
+
+          if(player.grade > 90)
+          {
+            Grade.textContent = "S"
+          }
+          else if(player.Grade > 80)
+          {
+            Grade.textContent = "A"
+          }
+          else if(player.Grade > 70)
+          {
+            Grade.textContent = "B"
+          }
+          else if(player.Grade > 60)
+          {
+            Grade.textContent = "C"
+          }
+          else if(player.Grade > 50)
+          {
+            Grade.textContent = "D"
+          }
+          else
+          {
+            Grade.textContent = "F"
+          }
+        });
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  }
+
+  // Load passing stats when the window has finished loading
+  window.addEventListener("load", fetchPassingStats);
+</script>
