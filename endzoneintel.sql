@@ -2524,7 +2524,7 @@ CREATE TABLE `2023recieving` (
   `G` int(11) NOT NULL,
   `Tgt` int(11) NOT NULL,
   `Rec` int(11) NOT NULL,
-  `CtchP` varchar(100) NOT NULL,
+  `CtchP` decimal(10,2) NOT NULL,
   `Yds` int(11) NOT NULL,
   `YPR` decimal(10,2) NOT NULL,
   `TD` int(11) NOT NULL,
