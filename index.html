@@ -110,10 +110,6 @@
           </form>
         </div>
         <div id="searchResults" class="mt-4"></div>
-
-        <!-- Chatbot Container -->
-        <div id="chatbotContainer"></div>
-      </main>
     </div>
 
     <!-- Footer -->
@@ -130,7 +126,6 @@
   const searchForm = document.getElementById("searchForm");
   const searchInput = document.getElementById("searchInput");
   const searchResultsContainer = document.getElementById("searchResults");
-  const chatbotContainer = document.getElementById("chatbotContainer");
 
   searchForm.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -144,25 +139,6 @@
     searchResultsContainer.innerHTML = "";
     searchResultsContainer.appendChild(searchResults);
   });
-
-  // Chatbot code
-  function loadChatbot() {
-    fetch("SeniorProjectCS/chatbot.html")
-      .then((response) => response.text())
-      .then((data) => {
-        const chatbotContainer = document.getElementById("chatbotContainer");
-        chatbotContainer.innerHTML = data;
-      });
-  }
-
-  window.addEventListener("load", loadChatbot);
-
-  function toggleChatbot() {
-    const chatbot = document.querySelector(".chatbot");
-    chatbot.classList.toggle("hidden");
-    const chatbotButton = document.getElementById("chatbotButton");
-    chatbotButton.classList.toggle("hidden");
-  }
 </script>
 
 <script>

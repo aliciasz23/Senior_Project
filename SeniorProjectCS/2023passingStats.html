@@ -114,8 +114,6 @@
           </div>
         </div>
       </main>
-      <!-- Chatbot Container -->
-      <div id="chatbotContainer"></div>
     </div>
 
     <!-- Footer -->
@@ -128,24 +126,6 @@
 </html>
 
 <script>
-    function loadChatbot() {
-      fetch("chatbot.html")
-        .then((response) => response.text())
-        .then((data) => {
-          const chatbotContainer = document.getElementById("chatbotContainer");
-          chatbotContainer.innerHTML = data;
-        });
-    }
-  
-    window.addEventListener("load", loadChatbot);
-  
-    function toggleChatbot() {
-      const chatbot = document.querySelector(".chatbot");
-      chatbot.classList.toggle("hidden");
-      const chatbotButton = document.getElementById("chatbotButton");
-      chatbotButton.classList.toggle("hidden");
-    }
-
     function fetchPassingStats() {
     fetch("http://127.0.0.1:3000/2023/passing/")
       .then((response) => response.json())
