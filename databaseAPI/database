@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express();
-const mysql = require('mysql');
+const pg = require('pg')
    
 /*------------------------------------------
 --------------------------------------------
@@ -17,11 +17,11 @@ app.use(cors())
 Database Connection
 --------------------------------------------
 --------------------------------------------*/
-const conn = mysql.createConnection({
-  host: '127.0.0.1',
-  user: 'root', /* MySQL User */
-  database: 'endzoneintel' /* MySQL Database */
-});
+const connectionString = "postgresql://dan:BxbVWwvbcgTKox9_4ue3kQ@endzone-intel-13426.7tt.aws-us-east-1.cockroachlabs.cloud:26257/endzone-intel?sslmode=verify-full"
+
+const conn = new pg.Client({
+    connectionString
+})
    
 /*------------------------------------------
 --------------------------------------------
@@ -30,7 +30,7 @@ Shows Mysql Connect
 --------------------------------------------*/
 conn.connect((err) =>{
   if(err) throw err;
-  console.log('Mysql Connected with App...');
+  console.log('Connected with App...');
 });
    
 /**
@@ -39,7 +39,7 @@ conn.connect((err) =>{
  * @return response()
  */
 app.get('/2022/passing',(req, res) => {
-  let sqlQuery = "SELECT * FROM 2022passing";
+  let sqlQuery = "SELECT * FROM passing2022";
   
   let query = conn.query(sqlQuery, (err, results) => {
     if(err) throw err;
@@ -48,34 +48,7 @@ app.get('/2022/passing',(req, res) => {
 });
 
 app.get('/2023/passing',(req, res) => {
-  let sqlQuery = "SELECT * FROM 2023passing";
-  
-  let query = conn.query(sqlQuery, (err, results) => {
-    if(err) throw err;
-    res.send(apiResponse(results));
-  });
-});
-
-app.get('/2022/passing/player/:id',(req, res) => {
-  let sqlQuery = "SELECT * FROM 2022passing WHERE id=" + req.params.id;
-  
-  let query = conn.query(sqlQuery, (err, results) => {
-    if(err) throw err;
-    res.send(apiResponse(results));
-  });
-});
-
-app.get('/2022/passing/stats/:stat',(req, res) => {
-  let sqlQuery = "SELECT " + req.params.stat + " FROM 2022passing";
-  
-  let query = conn.query(sqlQuery, (err, results) => {
-    if(err) throw err;
-    res.send(apiResponse(results));
-  });
-});
-
-app.get('/2022/passing/player/:id/:stat',(req, res) => {
-  let sqlQuery = "SELECT " + req.params.stat + " FROM 2022passing WHERE id=" + req.params.id;
+  let sqlQuery = "SELECT * FROM passing2023";
   
   let query = conn.query(sqlQuery, (err, results) => {
     if(err) throw err;
@@ -84,34 +57,7 @@ app.get('/2022/passing/player/:id/:stat',(req, res) => {
 });
 
 app.get('/2022/rushing',(req, res) => {
-  let sqlQuery = "SELECT * FROM 2022rushing";
-  
-  let query = conn.query(sqlQuery, (err, results) => {
-    if(err) throw err;
-    res.send(apiResponse(results));
-  });
-});
-
-app.get('/2022/rushing/player/:id',(req, res) => {
-  let sqlQuery = "SELECT * FROM 2022rushing WHERE id=" + req.params.id;
-  
-  let query = conn.query(sqlQuery, (err, results) => {
-    if(err) throw err;
-    res.send(apiResponse(results));
-  });
-});
-
-app.get('/2022/rushing/stats/:stat',(req, res) => {
-  let sqlQuery = "SELECT " + req.params.stat + " FROM 2022rushing";
-  
-  let query = conn.query(sqlQuery, (err, results) => {
-    if(err) throw err;
-    res.send(apiResponse(results));
-  });
-});
-
-app.get('/2022/rushing/player/:id/:stat',(req, res) => {
-  let sqlQuery = "SELECT " + req.params.stat + " FROM 2022rushing WHERE id=" + req.params.id;
+  let sqlQuery = "SELECT * FROM rushing2022";
   
   let query = conn.query(sqlQuery, (err, results) => {
     if(err) throw err;
@@ -120,34 +66,7 @@ app.get('/2022/rushing/player/:id/:stat',(req, res) => {
 });
 
 app.get('/2022/recieving',(req, res) => {
-  let sqlQuery = "SELECT * FROM 2022recieving";
-  
-  let query = conn.query(sqlQuery, (err, results) => {
-    if(err) throw err;
-    res.send(apiResponse(results));
-  });
-});
-
-app.get('/2022/recieving/player/:id',(req, res) => {
-  let sqlQuery = "SELECT * FROM 2022recieving WHERE id=" + req.params.id;
-  
-  let query = conn.query(sqlQuery, (err, results) => {
-    if(err) throw err;
-    res.send(apiResponse(results));
-  });
-});
-
-app.get('/2022/recieving/stats/:stat',(req, res) => {
-  let sqlQuery = "SELECT " + req.params.stat + " FROM 2022recieving";
-  
-  let query = conn.query(sqlQuery, (err, results) => {
-    if(err) throw err;
-    res.send(apiResponse(results));
-  });
-});
-
-app.get('/2022/recieving/player/:id/:stat',(req, res) => {
-  let sqlQuery = "SELECT " + req.params.stat + " FROM 2022recieving WHERE id=" + req.params.id;
+  let sqlQuery = "SELECT * FROM receiving2022";
   
   let query = conn.query(sqlQuery, (err, results) => {
     if(err) throw err;
@@ -156,34 +75,7 @@ app.get('/2022/recieving/player/:id/:stat',(req, res) => {
 });
 
 app.get('/2022/defense',(req, res) => {
-  let sqlQuery = "SELECT * FROM 2022defense";
-  
-  let query = conn.query(sqlQuery, (err, results) => {
-    if(err) throw err;
-    res.send(apiResponse(results));
-  });
-});
-
-app.get('/2022/defense/player/:id',(req, res) => {
-  let sqlQuery = "SELECT * FROM 2022defense WHERE id=" + req.params.id;
-  
-  let query = conn.query(sqlQuery, (err, results) => {
-    if(err) throw err;
-    res.send(apiResponse(results));
-  });
-});
-
-app.get('/2022/defense/stats/:stat',(req, res) => {
-  let sqlQuery = "SELECT " + req.params.stat + " FROM 2022defense";
-  
-  let query = conn.query(sqlQuery, (err, results) => {
-    if(err) throw err;
-    res.send(apiResponse(results));
-  });
-});
-
-app.get('/2022/defense/player/:id/:stat',(req, res) => {
-  let sqlQuery = "SELECT " + req.params.stat + " FROM 2022defense WHERE id=" + req.params.id;
+  let sqlQuery = "SELECT * FROM defense2022";
   
   let query = conn.query(sqlQuery, (err, results) => {
     if(err) throw err;
@@ -192,34 +84,7 @@ app.get('/2022/defense/player/:id/:stat',(req, res) => {
 });
 
 app.get('/2022/teamStats',(req, res) => {
-  let sqlQuery = "SELECT * FROM 2022team";
-  
-  let query = conn.query(sqlQuery, (err, results) => {
-    if(err) throw err;
-    res.send(apiResponse(results));
-  });
-});
-
-app.get('/2022/teamStats/team/:id',(req, res) => {
-  let sqlQuery = "SELECT * FROM 2022team WHERE id=" + req.params.id;
-  
-  let query = conn.query(sqlQuery, (err, results) => {
-    if(err) throw err;
-    res.send(apiResponse(results));
-  });
-});
-
-app.get('/2022/teamStats/stats/:stat',(req, res) => {
-  let sqlQuery = "SELECT " + req.params.stat + " FROM 2022team";
-  
-  let query = conn.query(sqlQuery, (err, results) => {
-    if(err) throw err;
-    res.send(apiResponse(results));
-  });
-});
-
-app.get('/2022/teamStats/team/:id/:stat',(req, res) => {
-  let sqlQuery = "SELECT " + req.params.stat + " FROM 2022team WHERE id=" + req.params.id;
+  let sqlQuery = "SELECT * FROM team2022";
   
   let query = conn.query(sqlQuery, (err, results) => {
     if(err) throw err;

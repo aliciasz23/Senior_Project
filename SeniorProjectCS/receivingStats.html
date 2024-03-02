@@ -132,7 +132,7 @@
       .then((data) => {
         const tableBody = document.getElementById("receivingStatsTable");
         // Loop through the fetched data and create table rows
-        data.response.forEach((player) => {
+        data.response.rows.forEach((player) => {
           const row = tableBody.insertRow();
 
           const Name = row.insertCell();

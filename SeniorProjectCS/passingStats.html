@@ -134,7 +134,7 @@
       .then((data) => {
         const tableBody = document.getElementById("passingStatsTable");
         // Loop through the fetched data and create table rows
-        data.response.forEach((player) => {
+        data.response.rows.forEach((player) => {
           const row = tableBody.insertRow();
 
           const Name = row.insertCell();
@@ -159,7 +159,7 @@
             child.className = "border border-blue-500 px-4 py-2";
           }
 
-          Name.textContent = player.Player.split('_').join(' ');
+          Name.textContent = player.Player;
           Team.textContent = player.Team;
           Pos.textContent = player.Pos;
           Games.textContent = player.Games;
