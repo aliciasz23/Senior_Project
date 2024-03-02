@@ -129,7 +129,7 @@
 <script>
   // Function to fetch data from the API and populate the table
   function fetchDefensiveStats() {
-    fetch("http://127.0.0.1:3000/2022/defense/")
+    fetch("http://159.65.219.15:3000/2022/defense/")
       .then((response) => response.json())
       .then((data) => {
         const tableBody = document.getElementById("defensiveStatsTable");
