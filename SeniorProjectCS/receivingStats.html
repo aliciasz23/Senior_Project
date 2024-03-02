@@ -127,7 +127,7 @@
 <script>
   // Function to fetch data from the API and populate the table
   function fetchReceivingStats() {
-    fetch("http://159.65.219.15:3000/2022/recieving/")
+    fetch("https://159.65.219.15:3000/2022/recieving/")
       .then((response) => response.json())
       .then((data) => {
         const tableBody = document.getElementById("receivingStatsTable");
