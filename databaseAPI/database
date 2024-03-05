@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const https = require('https')
+const fs = require('fs')
 const app = express();
 const pg = require('pg')
    
@@ -22,7 +24,12 @@ const connectionString = "postgresql://dan:BxbVWwvbcgTKox9_4ue3kQ@endzone-intel-
 const conn = new pg.Client({
     connectionString
 })
-   
+
+const options = {
+  key: fs.readFileSync('server.key'),
+  cert: fs.readFileSync('server.crt')
+}
+
 /*------------------------------------------
 --------------------------------------------
 Shows Mysql Connect
@@ -106,6 +113,7 @@ function apiResponse(results){
 Server listening
 --------------------------------------------
 --------------------------------------------*/
-app.listen(3000,() =>{
-  console.log('Server started on port 3000...');
-});
+https.createServer(options, (req, res) => {
+  res.writeHead(200);
+  res.end('Hello');
+}).listen(3000);
