@@ -115,6 +115,12 @@ Server listening
 --------------------------------------------
 --------------------------------------------*/
 https.createServer(options, (req, res) => {
-  res.writeHead(200);
-  res.end('Hello');
+  app.get('/2022/passing',(req, res) => {
+    let sqlQuery = "SELECT * FROM passing2022";
+    
+    let query = conn.query(sqlQuery, (err, results) => {
+      if(err) throw err;
+      res.send(apiResponse(results));
+    });
+  });
 }).listen(3000);
