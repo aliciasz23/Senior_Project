@@ -121,13 +121,25 @@
 
 <script>
 // Function to fetch data from the API and populate the table
-  function fetchRushingStats() {
-    fetch("https://159.65.219.15:3000/2022/rushing/")
-      .then((response) => response.json())
-      .then((data) => {
-        const tableBody = document.getElementById("rushingStatsTable");
+window.addEventListener('load', async () => {
+	fetch('https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-580f5f32-ec77-476b-8da8-33241dd8b7a5/endzone-intel/api', {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic YzEyMjkxM2ItNzVkMy00Y2NkLWEzMmQtOTcxYjdiNDgyNDY3OnZYTnVWdmJTelA2NkdTMlJmbmpSM3pLYWI2dzluRDYybzlvRjJVVmpLVDh6YWRpWVBCSlhaSUM4ZU9ZdFZveWE="
+		},
+		body: JSON.stringify({
+			type: 'rushing', // Required, defines the table name with the year (rushing, passing, defense)
+			year: '2022', // Required, defines the year for the table (2022, 2023)
+			// id: 103, // Optional, defines the player id
+			// stat: 'Att' // Optional, defines the player stat you want returned (the column name)
+		})
+	}).then(response =>
+		response.json()
+	).then(data => {
+		const tableBody = document.getElementById("rushingStatsTable");
         // Loop through the fetched data and create table rows
-        data.response.rows.forEach((player) => {
+        data.forEach((player) => {
           const row = tableBody.insertRow();
 
           const Name = row.insertCell();
@@ -159,10 +171,8 @@
           Fmb.textContent = player.Fmb;
           tableBody.appendChild(row);
         });
-      })
-      .catch((error) => console.error("Error fetching data:", error));
-  }
-
-  // Load passing stats when the window has finished loading
-  window.addEventListener("load", fetchRushingStats);
+	}).catch(error => {
+		console.log('Error: ', error)
+	})
+});
 </script>

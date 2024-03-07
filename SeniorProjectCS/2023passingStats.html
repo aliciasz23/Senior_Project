@@ -126,13 +126,26 @@
 </html>
 
 <script>
-    function fetchPassingStats() {
-    fetch("https://159.65.219.15:3000/2023/passing/")
-      .then((response) => response.json())
-      .then((data) => {
-        const tableBody = document.getElementById("passingStatsTable");
-        // Loop through the fetched data and create table rows
-        data.response.rows.forEach((player) => {
+  // Function to fetch data from the API and populate the table
+  window.addEventListener('load', async () => {
+	fetch('https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-580f5f32-ec77-476b-8da8-33241dd8b7a5/endzone-intel/api', {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic YzEyMjkxM2ItNzVkMy00Y2NkLWEzMmQtOTcxYjdiNDgyNDY3OnZYTnVWdmJTelA2NkdTMlJmbmpSM3pLYWI2dzluRDYybzlvRjJVVmpLVDh6YWRpWVBCSlhaSUM4ZU9ZdFZveWE="
+		},
+		body: JSON.stringify({
+			type: 'passing', // Required, defines the table name with the year (rushing, passing, defense)
+			year: '2023', // Required, defines the year for the table (2022, 2023)
+			// id: 103, // Optional, defines the player id
+			// stat: 'Att' // Optional, defines the player stat you want returned (the column name)
+		})
+	}).then(response =>
+		response.json()
+	).then(data => {
+		const tableBody = document.getElementById("passingStatsTable");
+
+    data.forEach((player) => {
           const row = tableBody.insertRow();
 
           const Name = row.insertCell();
@@ -157,7 +170,7 @@
             child.className = "border border-blue-500 px-4 py-2";
           }
 
-          Name.textContent = player.Player.split('_').join(' ');
+          Name.textContent = player.Player.replaceAll('_', " ");
           Team.textContent = player.Team;
           Pos.textContent = player.Pos;
           Games.textContent = player.Games;
@@ -178,19 +191,19 @@
           {
             Grade.textContent = "S"
           }
-          else if(player.Grade > 80)
+          else if(player.grade > 80)
           {
             Grade.textContent = "A"
           }
-          else if(player.Grade > 70)
+          else if(player.grade > 70)
           {
             Grade.textContent = "B"
           }
-          else if(player.Grade > 60)
+          else if(player.grade > 60)
           {
             Grade.textContent = "C"
           }
-          else if(player.Grade > 50)
+          else if(player.grade > 50)
           {
             Grade.textContent = "D"
           }
@@ -199,10 +212,8 @@
             Grade.textContent = "F"
           }
         });
-      })
-      .catch((error) => console.error("Error fetching data:", error));
-  }
-
-  // Load passing stats when the window has finished loading
-  window.addEventListener("load", fetchPassingStats);
+	}).catch(error => {
+		console.log('Error: ', error)
+	})
+});
 </script>
