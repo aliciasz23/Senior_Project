@@ -25,12 +25,6 @@ const conn = new pg.Client({
     connectionString
 })
 
-const options = {
-  key: fs.readFileSync('server.key'),
-  cert: fs.readFileSync('server.crt'),
-  passphrase: "endzoneintel"
-}
-
 /*------------------------------------------
 --------------------------------------------
 Shows Mysql Connect
@@ -40,7 +34,15 @@ conn.connect((err) =>{
   if(err) throw err;
   console.log('Connected with App...');
 });
-   
+
+const server = https.createServer({
+  key: fs.readFileSync('server.key'),
+  cert: fs.readFileSync('server.crt'),
+  passphrase: "endzoneintel"
+})
+
+server.listen(3000)
+
 /**
  * Get All Items in 2022passing
  *
@@ -114,13 +116,3 @@ function apiResponse(results){
 Server listening
 --------------------------------------------
 --------------------------------------------*/
-https.createServer(options, (req, res) => {
-  app.get('/2022/passing',(req, res) => {
-    let sqlQuery = "SELECT * FROM passing2022";
-    
-    let query = conn.query(sqlQuery, (err, results) => {
-      if(err) throw err;
-      res.send(apiResponse(results));
-    });
-  });
-}).listen(3000);
