@@ -16,7 +16,7 @@
       <div class="container mx-auto">
         <!--Endzone Intel Homepage Redirect -->
         <a
-          href="/"
+          href="SeniorProjectWeb.html"
           class="text-2xl font-semibold hover:underline"
           >Endzone Intel</a
         >
@@ -31,14 +31,9 @@
           <ul>
             <li class="mb-2">
               <a
-                href="/"
+                href="SeniorProjectWeb.html"
                 class="text-blue-500 hover:underline"
                 >Home</a
-              >
-            </li>
-            <li class="mb-2">
-              <a href="dashboard.html" class="text-blue-500 hover:underline"
-                >Dashboard</a
               >
             </li>
             <li class="mb-2">
@@ -48,12 +43,7 @@
             </li>
             <li class="mb-2">
               <a href="passingStats.html" class="text-blue-500 hover:underline"
-                >2022 Passing Stats</a
-              >
-            </li>
-            <li class="mb-2">
-              <a href="2023passingStats.html" class="text-blue-500 hover:underline"
-                >2023 Passing Stats</a
+                >Passing Stats</a
               >
             </li>
             <li class="mb-2">
@@ -92,6 +82,9 @@
           ></div>
         </div>
       </main>
+
+      <!-- Chatbot Container -->
+      <div id="chatbotContainer"></div>
     </div>
 
     <!-- Footer -->
@@ -105,6 +98,45 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
+      //function to fetch data and populate table
+      window.addEventListener("load", async () => {
+        fetch(
+          "https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-580f5f32-ec77-476b-8da8-33241dd8b7a5/endzone-intel/api",
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization:
+                "Basic YzEyMjkxM2ItNzVkMy00Y2NkLWEzMmQtOTcxYjdiNDgyNDY3OnZYTnVWdmJTelA2NkdTMlJmbmpSM3pLYWI2dzluRDYybzlvRjJVVmpLVDh6YWRpWVBCSlhaSUM4ZU9ZdFZveWE=",
+            },
+            body: JSON.stringify({
+              type: "team",
+              year: "2023",
+            }),
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            const tablelBody = document.getElementById("teamStatsTable");
+
+            data.forEach((team) => {
+              const row = tableBody.insertRow();
+
+              const teamName = row.insertCell();
+
+              for (child of row.children) {
+                child.classList.add(
+                  "border",
+                  "border-gray-300",
+                  "px-4",
+                  "py-2"
+                );
+              }
+
+              teamName.textContent = team.teamName;
+            });
+          });
+      });
       $(document).ready(function () {
         // Function to fetch team data from the database
         function fetchTeamData(teamName) {
@@ -121,17 +153,74 @@
           });
         }
 
+        //function for teams' players to be listed
+        //player.Team == team.Team ??
+        //in the database players have just team abbreviations, teams dont have abbreviations..
+        //map team names to abbreviations key value objects
+
+        teamName_to_abbreviation = {
+          "Arizona Cardinals": "ARI",
+          "Atlanta Falcons": "ATL",
+          "Baltimore Ravens": "BAL",
+          "Buffalo Bills": "BUF",
+          "Carolina Panthers": "CAR",
+          "Chicago Bears": "CHI",
+          "Cincinnati Bengals": "CIN",
+          "Cleveland Browns": "CLE",
+          "Dallas Cowboys": "DAL",
+          "Denver Broncos": "DEN",
+          "Detroit Lions": "DET",
+          "Green Bay Packers": "GNB",
+          "Houston Texans": "HOU",
+          "Indianapolis Colts": "IND",
+          "Jacksonville Jaguars": "JAX",
+          "Kansas City Chiefs": "KCC",
+          "Los Angeles Chargers": "LAC",
+          "Los Angeles Rams": "LAR",
+          "Las Vegas Raiders": "LVR",
+          "Miami Dolphins": "MIA",
+          "Minnesota Vikings": "MIN",
+          "New England Patriots": "NWE",
+          "New Orleans Saints": "NOR",
+          "New York Giants": "NYG",
+          "New York Jets": "NYJ",
+          "Philadelphia Eagles": "PHI",
+          "Pittsburgh Steelers": "PIT",
+          "San Francisco 49ers": "SFO",
+          "Seattle Seahawks": "SEA",
+          "Tampa Bay Buccaneers": "TAM",
+          "Tennessee Titans": "TEN",
+          "Washington Commanders": "WAS",
+        };
+
+        // Function to print players on the team selected by user by using the team abbreviation
+        //function to print player.Team == teamName_to_abbreviation[teamName]
+
+        function fetchTeamPlayers(teamName) {
+          return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+              // Example team data
+              const teamPlayers = {
+                logoSrc: `images/${teamName
+                  .toLowerCase()
+                  .replace(/\s+/g, "-")}.png`, // Example:images/new-england-patriots.png
+              };
+              resolve(teamPlayers);
+            }, 500); // Simulated delay of 500 milliseconds
+          });
+        }
+
         // Function to render team info
         function renderTeamInfo(teamName) {
           fetchTeamData(teamName)
             .then(function (teamData) {
               const teamInfoContainer = $("#teamInfo");
               teamInfoContainer.html(`
-                    <div>
-                      <img src="${teamData.logoSrc}" alt="${teamName}" class="w-full h-32 object-contain mb-2" />
-                      <h2 class="text-lg font-semibold">${teamName}</h2>
-                    </div>
-                  `);
+                        <div>
+                          <img src="${teamData.logoSrc}" alt="${teamName}" class="w-full h-32 object-contain mb-2" />
+                          <h2 class="text-lg font-semibold">${teamName}</h2>
+                        </div>
+                      `);
               teamInfoContainer.removeClass("hidden");
             })
             .catch(function (error) {
@@ -252,11 +341,11 @@
 
           teams.forEach(function (team) {
             const teamDiv = $(`
-                  <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
-                    <img src="${team.logoSrc}" alt="${team.name}" class="w-full h-32 object-contain mb-2" />
-                    <h2 class="text-lg font-semibold">${team.name}</h2>
-                  </div>
-                `);
+                      <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+                        <img src="${team.logoSrc}" alt="${team.name}" class="w-full h-32 object-contain mb-2" />
+                        <h2 class="text-lg font-semibold">${team.name}</h2>
+                      </div>
+                    `);
             teamDiv.click(function () {
               handleTeamClick(team.name);
             });
