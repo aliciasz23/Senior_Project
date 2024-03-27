@@ -193,23 +193,49 @@
           "Washington Commanders": "WAS",
         };
 
-        // Function to print players on the team selected by user by using the team abbreviation
-        //function to print player.Team == teamName_to_abbreviation[teamName]
+        //Function to print players on the team selected by user by using the team abbreviation, team name selected == team abbreviation
+        //Function should also list the players' stats whos team is selected
+        //Players stats are in the database
         function fetchTeamPlayers(teamName) {
-          if (!teamName) {
-            return console.log("Invalid Team");
-          }
-          const abbr = teamName_to_abbreviation[teamName];
-          if (!abbr) {
-            return console.log("Invalid Team");
-          }
-
-          console.log(`Players for ${teamName} (${abbr}):`);
-          players.forEach((player) => {
-            if (player.Team == abbr) {
-              console.log(player.Name);
+          fetch(
+            "https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-580f5f32-ec77-476b-8da8-33241dd8b7a5/endzone-intel/api",
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization:
+                  "Basic YzEyMjkxM2ItNzVkMy00Y2NkLWEzMmQtOTcxYjdiNDgyNDY3OnZYTnVWdmJTelA2NkdTMlJmbmpSM3pLYWI2dzluRDYybzlvRjJVVmpLVDh6YWRpWVBCSlhaSUM4ZU9ZdFZveWE=",
+              },
+              body: JSON.stringify({
+                type: "player",
+                year: "2023",
+                team: teamName_to_abbreviation[teamName],
+              }),
             }
-          });
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              const tablelBody = document.getElementById("teamStatsTable");
+
+              data.forEach((player) => {
+                const row = tableBody.insertRow();
+
+                const playerName = row.insertCell();
+                const playerStats = row.insertCell();
+
+                for (child of row.children) {
+                  child.classList.add(
+                    "border",
+                    "border-gray-300",
+                    "px-4",
+                    "py-2"
+                  );
+                }
+
+                playerName.textContent = player.playerName;
+                playerStats.textContent = player.playerStats;
+              });
+            });
         }
 
         // Function to render team info
@@ -218,11 +244,11 @@
             .then(function (teamData) {
               const teamInfoContainer = $("#teamInfo");
               teamInfoContainer.html(`
-                        <div>
-                          <img src="${teamData.logoSrc}" alt="${teamName}" class="w-full h-32 object-contain mb-2" />
-                          <h2 class="text-lg font-semibold">${teamName}</h2>
-                        </div>
-                      `);
+                          <div>
+                            <img src="${teamData.logoSrc}" alt="${teamName}" class="w-full h-32 object-contain mb-2" />
+                            <h2 class="text-lg font-semibold">${teamName}</h2>
+                          </div>
+                        `);
               teamInfoContainer.removeClass("hidden");
             })
             .catch(function (error) {
@@ -233,6 +259,7 @@
         // Function to handle team click
         function handleTeamClick(teamName) {
           renderTeamInfo(teamName);
+          fetchTeamPlayers(teamName);
         }
 
         // Function to render team list
@@ -343,11 +370,11 @@
 
           teams.forEach(function (team) {
             const teamDiv = $(`
-                      <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
-                        <img src="${team.logoSrc}" alt="${team.name}" class="w-full h-32 object-contain mb-2" />
-                        <h2 class="text-lg font-semibold">${team.name}</h2>
-                      </div>
-                    `);
+                        <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+                          <img src="${team.logoSrc}" alt="${team.name}" class="w-full h-32 object-contain mb-2" />
+                          <h2 class="text-lg font-semibold">${team.name}</h2>
+                        </div>
+                      `);
             teamDiv.click(function () {
               handleTeamClick(team.name);
             });
