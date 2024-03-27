@@ -155,7 +155,7 @@
 
         //function for teams' players to be listed
         //player.Team == team.Team ??
-        //in the database players have just team abbreviations, teams dont have abbreviations..
+        //in the database players have just team abbreviations, teams dont have abbreviations
         //map team names to abbreviations key value objects
 
         teamName_to_abbreviation = {
@@ -195,18 +195,20 @@
 
         // Function to print players on the team selected by user by using the team abbreviation
         //function to print player.Team == teamName_to_abbreviation[teamName]
-
         function fetchTeamPlayers(teamName) {
-          return new Promise(function (resolve, reject) {
-            setTimeout(function () {
-              // Example team data
-              const teamPlayers = {
-                logoSrc: `images/${teamName
-                  .toLowerCase()
-                  .replace(/\s+/g, "-")}.png`, // Example:images/new-england-patriots.png
-              };
-              resolve(teamPlayers);
-            }, 500); // Simulated delay of 500 milliseconds
+          if (!teamName) {
+            return console.log("Invalid Team");
+          }
+          const abbr = teamName_to_abbreviation[teamName];
+          if (!abbr) {
+            return console.log("Invalid Team");
+          }
+
+          console.log(`Players for ${teamName} (${abbr}):`);
+          players.forEach((player) => {
+            if (player.Team == abbr) {
+              console.log(player.Name);
+            }
           });
         }
 
