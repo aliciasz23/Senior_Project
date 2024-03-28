@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -92,23 +91,23 @@
             >
               <thead>
                 <tr>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats/2023passingStats.html" class = "hover:underline"> Player </a></th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats/2023passingStats.html" class = "hover:underline">Grade</a></th>
-                  <th class="border border-blue-700 px-4 py-2">Team</th>
-                  <th class="border border-blue-700 px-4 py-2">Pos</th>
-                  <th class="border border-blue-700 px-4 py-2">Games</th>
-                  <th class="border border-blue-700 px-4 py-2">Comps</th>
-                  <th class="border border-blue-700 px-4 py-2">Ampts</th>
-                  <th class="border border-blue-700 px-4 py-2">Comp%</th>
-                  <th class="border border-blue-700 px-4 py-2">Yds</th>
-                  <th class="border border-blue-700 px-4 py-2">Tds</th>
-                  <th class="border border-blue-700 px-4 py-2">Ints</th>
-                  <th class="border border-blue-700 px-4 py-2">LNG</th>
-                  <th class="border border-blue-700 px-4 py-2">YPC</th>
-                  <th class="border border-blue-700 px-4 py-2">YPG</th>
-                  <th class="border border-blue-700 px-4 py-2">Rate</th>
-                  <th class="border border-blue-700 px-4 py-2">QBR</th>
-                  <th class="border border-blue-700 px-4 py-2">GWDs</th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023passingStats.html" class = "hover:underline"> Player </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023passingStats.html" class = "hover:underline"> Grade </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023passingStats.html" class = "text-gray-500 hover:underline"> Team </a></th>
+                  <th class="border border-blue-700 px-4 py-2"> POS </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023passingStats.html" class = "hover:underline"> Games </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023passingStats.html" class = "hover:underline"> Comps </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023passingStats.html" class = "hover:underline"> Ampts </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023passingStats.html" class = "hover:underline"> Comp% </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023passingStats.html" class = "hover:underline"> Yds </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023passingStats.html" class = "hover:underline"> Tds </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023passingStats.html" class = "hover:underline"> Ints </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023passingStats.html" class = "hover:underline"> LNG </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023passingStats.html" class = "hover:underline"> YPC </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023passingStats.html" class = "hover:underline"> YPG </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023passingStats.html" class = "hover:underline"> Rate </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023passingStats.html" class = "hover:underline"> QBR </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023passingStats.html" class = "hover:underline"> GWDs </th>
                 </tr>
               </thead>
             </table>
@@ -148,12 +147,13 @@
 
     data = data.sort((a,b) => {
 
-    if(a.Player < b.Player) {
+    if(a.Team < b.Team) {
 
-      return -1;
+     return -1;
   }
-
+     
   });
+
 
     data.forEach((player) => {
           const row = tableBody.insertRow();
