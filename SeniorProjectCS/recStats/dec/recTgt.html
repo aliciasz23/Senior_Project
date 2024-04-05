@@ -142,7 +142,17 @@
 		response.json()
 	).then(data => {
     const tableBody = document.getElementById("receivingStatsTable");
-        // Loop through the fetched data and create table rows
+        
+    data = data.sort((a,b) => {
+
+      if(b.Tgt < a.Tgt) {
+
+         return -1;
+      }
+    });
+
+        
+         // Loop through the fetched data and create table rows
         data.forEach((player) => {
           const row = tableBody.insertRow();
 

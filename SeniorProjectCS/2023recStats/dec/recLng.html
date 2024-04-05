@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receiving Stats - Endzone Intel</title>
+    <!-- Include Tailwind CSS via CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css"
+    />
+  </head>
+  <body class="bg-gray-100 font-sans min-h-screen">
+    <!-- Header -->
+    <header class="bg-blue-700 text-white p-4">
+      <div class="container mx-auto">
+        <!-- Endzone Intel Homepage Redirect -->
+        <a
+          href="/"
+          class="text-2xl font-semibold hover:underline"
+          >Endzone Intel</a
+        >
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto mt-8 h-screen flex">
+      <!-- Sidebar -->
+      <aside class="w-1/4 p-4 bg-gray-200">
+        <nav>
+          <ul>
+            <li class="mb-2">
+              <a
+                href="/"
+                class="text-blue-500 hover:underline"
+                >Home</a
+              >
+            </li>
+            <li class="mb-2">
+              <a href="dashboard.html" class="text-blue-500 hover:underline"
+                >Dashboard</a
+              >
+            </li>
+            <li class="mb-2">
+              <a href="teamStats.html" class="text-blue-500 hover:underline"
+                >Team Stats</a
+              >
+            </li>
+            <li class="mb-2">
+              <a href="passingStats.html" class="text-blue-500 hover:underline"
+                >2022 Passing Stats</a
+              >
+
+            <li class="mb-2">
+                <a href="2023passingStats.html" class="text-blue-500 hover:underline"
+                  >2023 Passing Stats</a
+                >
+            </li>
+            
+            <li class="mb-2">
+              <a href="rushingStats.html" class="text-blue-500 hover:underline"
+                >Rushing Stats</a
+              >
+            </li>
+            <li class="mb-2">
+              <a
+                href="receivingStats.html"
+                class="text-blue-500 hover:underline"
+                >Recieving Stats</a
+              >
+            </li>
+            <li class="mb-2">
+              <a
+                href="defensiveStats.html"
+                class="text-blue-500 hover:underline"
+                >Defensive Stats</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="w-3/4 p-4 bg-white overflow-y-auto">
+        <!-- Player Stats Content -->
+        <div>
+          <h1 class="text-3xl font-semibold mb-4">Receiving Stats</h1>
+          <div class="overflow-x-auto">
+            <table
+              id="receivingStatsTable"
+              class="table-auto border-collapse border"
+            >
+              <thead>
+                <tr>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023recStats/asc/recPlayer.html" class = "hover:underline"> Player </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023recStats/asc/recTeam.html" class = "hover:underline"> Team </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023recStats/asc/recPos.html" class = "hover:underline"> Pos </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023recStats/asc/recG.html" class = "hover:underline"> Games </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023recStats/asc/recTgt.html" class = "hover:underline"> Tgt </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023recStats/asc/recRec.html" class = "hover:underline"> Rec </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023recStats/asc/recCtchP.html" class = "hover:underline"> CtchP </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023recStats/asc/recYds.html" class = "hover:underline"> Yds </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023recStats/asc/recYPR.html" class = "hover:underline"> YPR </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023recStats/asc/recTD.html" class = "hover:underline"> TDs </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023recStats/asc/recLng.html" class = "hover:underline"> Lng </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023recStats/asc/recYPTgt.html" class = "hover:underline"> YPTgt </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023recStats/asc/recRPG.html" class = "hover:underline"> RPG </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023recStats/asc/recYPG.html" class = "hover:underline"> YPG </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023recStats/asc/recFmb.html" class = "hover:underline"> FUM </a></th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-blue-700 text-white p-4">
+      <div class="container mx-auto">
+        <p class="text-sm">&copy; 2023 Endzone Intel</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<script>
+ window.addEventListener('load', async () => {
+	fetch('https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-580f5f32-ec77-476b-8da8-33241dd8b7a5/endzone-intel/api', {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic YzEyMjkxM2ItNzVkMy00Y2NkLWEzMmQtOTcxYjdiNDgyNDY3OnZYTnVWdmJTelA2NkdTMlJmbmpSM3pLYWI2dzluRDYybzlvRjJVVmpLVDh6YWRpWVBCSlhaSUM4ZU9ZdFZveWE="
+		},
+		body: JSON.stringify({
+			type: 'receiving', // Required, defines the table name with the year (rushing, passing, defense)
+			year: '2022', // Required, defines the year for the table (2022, 2023)
+			// id: 103, // Optional, defines the player id
+			// stat: 'Att' // Optional, defines the player stat you want returned (the column name)
+		})
+	}).then(response =>
+		response.json()
+	).then(data => {
+    const tableBody = document.getElementById("receivingStatsTable");
+      
+    data = data.sort((a,b) => {
+
+      if(b.Lng < a.Lng) {
+
+           return -1;
+      }
+    });
+
+    
+        // Loop through the fetched data and create table rows
+        data.forEach((player) => {
+          const row = tableBody.insertRow();
+
+          const Name = row.insertCell();
+          const Team = row.insertCell();
+          const Pos = row.insertCell();
+          const G = row.insertCell();
+          const Tgts = row.insertCell();
+          const Recs = row.insertCell();
+          const CtchP = row.insertCell();
+          const Yds = row.insertCell();
+          const YPR = row.insertCell();
+          const TDs = row.insertCell();
+          const Lng = row.insertCell();
+          const YPTgt = row.insertCell();
+          const RPG = row.insertCell();
+          const YPG = row.insertCell();
+          const FUM = row.insertCell();
+
+          for (child of row.children) {
+            child.classList.add("border", "border-blue-500", "px-4", "py-2");
+          }
+
+          Name.textContent = player.Player.split('_').join(' ');
+          Team.textContent = player.Team;
+          Pos.textContent = player.Pos;
+          G.textContent = player.G;
+          Tgts.textContent = player.Tgt;
+          Recs.textContent = player.Rec;
+          CtchP.textContent = player.CtchP;
+          Yds.textContent = player.Yds;
+          YPR.textContent = player.YPR;
+          TDs.textContent = player.TD;
+          Lng.textContent = player.Lng;
+          YPTgt.textContent = player.YPTgt;
+          RPG.textContent = player.RPG;
+          YPG.textContent = player.YPG;
+          FUM.textContent = player.Fmb;
+        });
+	}).catch(error => {
+		console.log('Error: ', error)
+	})
+});
+</script>

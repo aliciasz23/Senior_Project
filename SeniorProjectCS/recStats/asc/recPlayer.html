@@ -143,7 +143,14 @@
 	).then(data => {
     const tableBody = document.getElementById("receivingStatsTable");
        
-    
+    data = data.sort((a,b) => {
+
+      if(a.player > b.player) {
+
+            return -1;
+      }
+    });
+
         
         // Loop through the fetched data and create table rows
         data.forEach((player) => {

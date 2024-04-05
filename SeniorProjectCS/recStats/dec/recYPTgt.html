@@ -145,8 +145,9 @@
         
         data = data.sort((a,b) => {
 
-            return 
-        })
+            return b.YPTgt - a.YPTgt;
+            
+        });
     
         // Loop through the fetched data and create table rows
         data.forEach((player) => {
