@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="/styles.css">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2023 Passing Stats - Endzone Intel</title>
+    <title>2022 Passing Stats - Endzone Intel</title>
     <!-- Include Tailwind CSS via CDN -->
     <link
       rel="stylesheet"
@@ -23,7 +24,47 @@
       </div>
     </header>
 
+    <!--NavBar-->
+    <nav class="navbar">
+      <ul>
+        <li><a href="/">Home</a></li>
+
+        <li>
+          <a>Passing Stats</a>
+            <ul>
+              <li><a href="/SeniorProjectCS/passingStats.html">2022</a></li>
+              <li><a href="/SeniorProjectCS/2023passingStats.html">2023</a></li>
+            </ul>
+        </li>
+        
+        <li>
+          <a>Rushing Stats</a>
+            <ul>
+              <li><a href="/SeniorProjectCS/rushingStats.html">2022</a></li>
+              <li><a href="/SeniorProjectCS/2023rushingStats.html">2023</a></li>
+            </ul>
+        </li>
+
+        <li>
+          <a>Receiving Stats</a>
+            <ul>
+              <li><a href="/SeniorProjectCS/receivingStats.html">2022</a></li>
+              <li><a href="/SeniorProjectCS/2023receivingStats.html">2023</a></li>
+            </ul>
+        </li>
+
+        <li>
+          <a>Defense Stats</a>
+            <ul>
+              <li><a href="/SeniorProjectCS/defensiveStats.html">2022</a></li>
+              <li><a href="/SeniorProjectCS/2023defensiveStats.html">2023</a></li>
+            </ul>
+        </li>
+      </ul>
+    </nav>
+
     <!-- Main Content -->
+<<<<<<< HEAD
     <div class="container mx-auto mt-8 h-screen flex">
       <!-- Sidebar -->
       <aside class="w-1/4 p-4 bg-gray-200">
@@ -100,6 +141,10 @@
 
 
       <main class="w-3/4 p-4 bg-white overflow-y-auto">
+=======
+    <div class="mx-auto h-screen flex">
+      <main class="w-full p-4 bg-white overflow-y-auto">
+>>>>>>> 6d2f1e2fd3224e52b9111ca056e8fe79372592e7
         <!-- Passing Stats Content -->
         <div>
           <h1 class="text-3xl font-semibold mb-4">2022 Passing Stats</h1>
@@ -110,23 +155,23 @@
             >
               <thead>
                 <tr>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/passingStats.html" class = "hover:underline"> Player </a></th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/passingStats.html" class = "hover:underline"> Grade </a></th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/passingStats.html" class = "text-gray-500 hover:underline"> Team </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/dec/statsbyplayer.html" class = "hover:underline"> Player </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/dec/statsbygrade.html" class = "hover:underline"> Grade </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/dec/statsbyteams.html" class = "hover:underline"> Team </a></th>
                   <th class="border border-blue-700 px-4 py-2"> POS </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/passingStats.html" class = "hover:underline"> Games </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/dec/statsbygames.html" class = "hover:underline"> Games </a></th>
                   <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/passingStats.html" class = "hover:underline"> Comps </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/passingStats.html" class = "hover:underline"> Ampts </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/passingStats.html" class = "hover:underline"> Comp% </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/passingStats.html" class = "hover:underline"> Yds </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/passingStats.html" class = "hover:underline"> Tds </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/passingStats.html" class = "hover:underline"> Ints </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/passingStats.html" class = "hover:underline"> LNG </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/passingStats.html" class = "hover:underline"> YPC </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/passingStats.html" class = "hover:underline"> YPG </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/passingStats.html" class = "hover:underline"> Rate </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/passingStats.html" class = "hover:underline"> QBR </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/passingStats.html" class = "hover:underline"> GWDs </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/dec/statsbyAmpts.html" class = "hover:underline"> Ampts </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/dec/statsbycompP.html" class = "hover:underline"> Comp% </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/dec/statsbyyds.html" class = "hover:underline"> Yds </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/dec/statsbytds.html" class = "hover:underline"> Tds </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/dec/statsbyints.html" class = "hover:underline"> Ints </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/dec/statsbylng.html" class = "hover:underline"> LNG </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/dec/statsbyypc.html" class = "hover:underline"> YPC </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/dec/statsbyypg.html" class = "hover:underline"> YPG </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/dec/statsbyrate.html" class = "hover:underline"> Rate </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/dec/statsbyqbr.html" class = "hover:underline"> QBR </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/dec/statsbygwds.html" class = "hover:underline"> GWDs </th>
                 </tr>
               </thead>
             </table>
@@ -155,7 +200,7 @@
 		},
 		body: JSON.stringify({
 			type: 'passing', // Required, defines the table name with the year (rushing, passing, defense)
-			year: '2023', // Required, defines the year for the table (2022, 2023)
+			year: '2022', // Required, defines the year for the table (2022, 2023)
 			// id: 103, // Optional, defines the player id
 			// stat: 'Att' // Optional, defines the player stat you want returned (the column name)
 		})
@@ -166,7 +211,7 @@
 
     data = data.sort((a,b) => {
 
-    if(a.Cmp > b.Cmp) {
+    if(a.Cmp < b.Cmp) {
 
       return -1;
   }
@@ -198,6 +243,8 @@
             child.className = "border border-blue-500 px-4 py-2";
           }
 
+          Comps.className = "border border-blue-500 bg-gray-200 px-4 py-2"
+          
           Name.textContent = player.Player.replaceAll('_', " ");
           Team.textContent = player.Team;
           Pos.textContent = player.Pos;
