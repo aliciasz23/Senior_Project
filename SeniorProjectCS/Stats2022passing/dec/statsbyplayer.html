@@ -2,9 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="/styles.css">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2023 Passing Stats - Endzone Intel</title>
+    <title>2022 Passing Stats - Endzone Intel</title>
     <!-- Include Tailwind CSS via CDN -->
     <link
       rel="stylesheet"
@@ -24,64 +25,48 @@
       </div>
     </header>
 
+    <!--NavBar-->
+    <nav class="navbar">
+      <ul>
+        <li><a href="/">Home</a></li>
+
+        <li>
+          <a>Passing Stats</a>
+            <ul>
+              <li><a href="/SeniorProjectCS/passingStats.html">2022</a></li>
+              <li><a href="/SeniorProjectCS/2023passingStats.html">2023</a></li>
+            </ul>
+        </li>
+        
+        <li>
+          <a>Rushing Stats</a>
+            <ul>
+              <li><a href="/SeniorProjectCS/rushingStats.html">2022</a></li>
+              <li><a href="/SeniorProjectCS/2023rushingStats.html">2023</a></li>
+            </ul>
+        </li>
+
+        <li>
+          <a>Receiving Stats</a>
+            <ul>
+              <li><a href="/SeniorProjectCS/receivingStats.html">2022</a></li>
+              <li><a href="/SeniorProjectCS/2023receivingStats.html">2023</a></li>
+            </ul>
+        </li>
+
+        <li>
+          <a>Defense Stats</a>
+            <ul>
+              <li><a href="/SeniorProjectCS/defensiveStats.html">2022</a></li>
+              <li><a href="/SeniorProjectCS/2023defensiveStats.html">2023</a></li>
+            </ul>
+        </li>
+      </ul>
+    </nav>
+
     <!-- Main Content -->
-    <div class="container mx-auto mt-8 h-screen flex">
-      <!-- Sidebar -->
-      <aside class="w-1/4 p-4 bg-gray-200">
-        <nav>
-          <ul>
-            <li class="mb-2">
-              <a
-                href="/"
-                class="text-blue-500 hover:underline"
-                >Home</a>
-              
-            </li>
-            <li class="mb-2">
-              <a href="dashboard.html" class="text-blue-500 hover:underline"
-                >Dashboard</a
-              >
-            </li>
-            <li class="mb-2">
-              <a href="teamStats.html" class="text-blue-500 hover:underline"
-                >Team Stats</a
-              >
-            </li>
-            <li class="mb-2">
-              <a href="passingStats.html" class="text-blue-500 hover:underline"
-                >2022 Passing Stats</a
-              >
-
-            <li class="mb-2">
-                <a href="2023passingStats.html" class="text-blue-500 hover:underline"
-                  >2023 Passing Stats</a
-                >
-            
-            </li>
-            <li class="mb-2">
-              <a href="rushingStats.html" class="text-blue-500 hover:underline"
-                >Rushing Stats</a
-              >
-            </li>
-            <li class="mb-2">
-              <a
-                href="receivingStats.html"
-                class="text-blue-500 hover:underline"
-                >Recieving Stats</a
-              >
-            </li>
-            <li class="mb-2">
-              <a
-                href="defensiveStats.html"
-                class="text-blue-500 hover:underline"
-                >Defensive Stats</a
-              >
-            </li>
-          </ul>
-        </nav>
-      </aside>
-
-      <main class="w-3/4 p-4 bg-white overflow-y-auto">
+    <div class="mx-auto h-screen flex">
+      <main class="w-full p-4 bg-white overflow-y-auto">
         <!-- Passing Stats Content -->
         <div>
           <h1 class="text-3xl font-semibold mb-4">2022 Passing Stats</h1>
@@ -92,23 +77,23 @@
             >
               <thead>
                 <tr>
-                  <th class="border border-blue-700 px-4 py-2"> Player </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/asc/statsbygrades.html" class = "hover:underline"> Grade </a></th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/asc/statsbyteams.html" class = "text-gray-500 hover:underline"> Team </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/passingStats.html" class = "hover:underline"> Player </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "statsbygrade.html" class = "hover:underline"> Grade </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "statsbyteams.html" class = "hover:underline"> Team </a></th>
                   <th class="border border-blue-700 px-4 py-2"> POS </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/asc/statsbygames.html" class = "hover:underline"> Games </a></th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/asc/statsbycomps.html" class = "hover:underline"> Comps </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/asc/statsbyampts.html" class = "hover:underline"> Ampts </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/asc/statsbycompP.html" class = "hover:underline"> Comp% </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/asc/statsbyyds.html" class = "hover:underline"> Yds </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/asc/statsbyptds.html" class = "hover:underline"> Tds </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/asc/statsbyints.html" class = "hover:underline"> Ints </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/asc/statsbylng.html" class = "hover:underline"> LNG </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/asc/statsbyypc.html" class = "hover:underline"> YPC </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/asc/statsbyypg.html" class = "hover:underline"> YPG </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/asc/statsbyrate.html" class = "hover:underline"> Rate </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/asc/statsbyqbr.html" class = "hover:underline"> QBR </th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/Stats2022passing/asc/statsbygwds.html" class = "hover:underline"> GWDs </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "statsbygames.html" class = "hover:underline"> Games </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "statsbycomps.html" class = "hover:underline"> Comps </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "statsbyampts.html" class = "hover:underline"> Ampts </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "statsbycompP.html" class = "hover:underline"> Comp% </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "statsbyyds.html" class = "hover:underline"> Yds </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "statsbytds.html" class = "hover:underline"> Tds </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "statsbyints.html" class = "hover:underline"> Ints </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "statsbylng.html" class = "hover:underline"> LNG </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "statsbyypc.html" class = "hover:underline"> YPC </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "statsbyypg.html" class = "hover:underline"> YPG </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "statsbyrate.html" class = "hover:underline"> Rate </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "statsbyqbr.html" class = "hover:underline"> QBR </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "statsbygwds.html" class = "hover:underline"> GWDs </th>
                 </tr>
               </thead>
             </table>
@@ -137,7 +122,7 @@
 		},
 		body: JSON.stringify({
 			type: 'passing', // Required, defines the table name with the year (rushing, passing, defense)
-			year: '2023', // Required, defines the year for the table (2022, 2023)
+			year: '2022', // Required, defines the year for the table (2022, 2023)
 			// id: 103, // Optional, defines the player id
 			// stat: 'Att' // Optional, defines the player stat you want returned (the column name)
 		})
@@ -148,7 +133,7 @@
 
     data = data.sort((a,b) => {
 
-    if(a.Player < b.Player) {
+    if(a.Player > b.Player) {
         
       return -1;
   }
@@ -180,6 +165,7 @@
             child.className = "border border-blue-500 px-4 py-2";
           }
 
+          Name.className = "border border-blue-500 bg-gray-200 px-4 py-2";
           Name.textContent = player.Player.replaceAll('_', " ");
           Team.textContent = player.Team;
           Pos.textContent = player.Pos;
