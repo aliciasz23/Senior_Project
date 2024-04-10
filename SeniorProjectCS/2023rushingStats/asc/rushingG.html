@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rushing Stats - Endzone Intel</title>
+    <!-- Include Tailwind CSS via CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css"
+    />
+  </head>
+  <body class="bg-gray-100 font-sans min-h-screen">
+    <!-- Header -->
+    <header class="bg-blue-700 text-white p-4">
+      <div class="container mx-auto">
+        <!-- Endzone Intel Homepage Redirect -->
+        <a
+          href="/"
+          class="text-2xl font-semibold hover:underline"
+          >Endzone Intel</a
+        >
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto mt-8 h-screen flex">
+      <!-- Sidebar -->
+      <aside class="w-1/4 p-4 bg-gray-200">
+        <nav>
+          <ul>
+            <li class="mb-2">
+              <a
+                href="/"
+                class="text-blue-500 hover:underline"
+                >Home</a
+              >
+            </li>
+            <li class="mb-2">
+              <a href="dashboard.html" class="text-blue-500 hover:underline"
+                >Dashboard</a
+              >
+            </li>
+            <li class="mb-2">
+              <a href="teamStats.html" class="text-blue-500 hover:underline"
+                >Team Stats</a
+              >
+            </li>
+            <li class="mb-2">
+              <a href="passingStats.html" class="text-blue-500 hover:underline"
+                >2022 Passing Stats</a
+              >
+
+            <li class="mb-2">
+                <a href="2023passingStats.html" class="text-blue-500 hover:underline"
+                  >2023 Passing Stats</a
+                >
+            </li>
+            <li class="mb-2">
+              <a href="rushingStats.html" class="text-blue-500 hover:underline"
+                >2022 Rushing Stats</a
+              >
+            </li>
+            <li class="mb-2">
+              <a href="2023rushingStats.html" class="text-blue-500 hover:underline"
+                >2023 Rushing Stats</a
+              >
+            </li>
+            <li class="mb-2">
+              <a
+                href="receivingStats.html"
+                class="text-blue-500 hover:underline"
+                >2022 Recieving Stats</a
+              >
+            </li>
+            <li class="mb-2">
+              <a
+                href="2023receivingStats.html"
+                class="text-blue-500 hover:underline"
+                >2023 Recieving Stats</a
+              >
+            </li>
+            <li class="mb-2">
+              <a
+                href="defensiveStats.html"
+                class="text-blue-500 hover:underline"
+                >2022 Defensive Stats</a
+              >
+            </li>
+            <li class="mb-2">
+              <a 
+                href="2023defensiveStats.html"
+                class="text-blue-500 hover:underline"
+                >2023 Defensive Stats</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="w-3/4 p-4 bg-white overflow-y-auto">
+        <!-- Player Stats Content -->
+        <div>
+          <h1 class="text-3xl font-semibold mb-4">Rushing Stats</h1>
+          <div class="overflow-x-auto">
+            <table
+              id="rushingStatsTable"
+              class="table-auto border-collapse border"
+            >
+              <thead>
+                <tr>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023rushingStats.html" class = "hover:underline"> Player </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023rushingStats.html" class = "hover:underline"> Team </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023rushingStats.html" class = "hover:underline"> Pos </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023rushingStats.html" class = "hover:underline"> Games </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023rushingStats.html" class = "hover:underline"> Ampts </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023rushingStats.html" class = "hover:underline"> Yds </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023rushingStats.html" class = "hover:underline"> Tds </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023rushingStats.html" class = "hover:underline"> LNG </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023rushingStats.html" class = "hover:underline"> YPA </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023rushingStats.html" class = "hover:underline"> YPG </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023rushingStats.html" class = "hover:underline"> Fmb </a></th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-blue-700 text-white p-4">
+      <div class="container mx-auto">
+        <p class="text-sm">&copy; 2023 Endzone Intel</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<script>
+// Function to fetch data from the API and populate the table
+window.addEventListener('load', async () => {
+	fetch('https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-580f5f32-ec77-476b-8da8-33241dd8b7a5/endzone-intel/api', {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic YzEyMjkxM2ItNzVkMy00Y2NkLWEzMmQtOTcxYjdiNDgyNDY3OnZYTnVWdmJTelA2NkdTMlJmbmpSM3pLYWI2dzluRDYybzlvRjJVVmpLVDh6YWRpWVBCSlhaSUM4ZU9ZdFZveWE="
+		},
+		body: JSON.stringify({
+			type: 'rushing', // Required, defines the table name with the year (rushing, passing, defense)
+			year: '2023', // Required, defines the year for the table (2022, 2023)
+			// id: 103, // Optional, defines the player id
+			// stat: 'Att' // Optional, defines the player stat you want returned (the column name)
+		})
+	}).then(response =>
+		response.json()
+	).then(data => {
+		const tableBody = document.getElementById("rushingStatsTable");
+        
+        data = data.sort((a,b) => {
+
+            if(a.G > b.G) {
+
+                 return -1;
+            }
+        });
+        
+        // Loop through the fetched data and create table rows
+        data.forEach((player) => {
+          const row = tableBody.insertRow();
+
+          const Name = row.insertCell();
+          const Team = row.insertCell();
+          const Pos = row.insertCell();
+          const Games = row.insertCell();
+          const Atts = row.insertCell();
+          const Yds = row.insertCell();
+          const Tds = row.insertCell();
+          const Lng = row.insertCell();
+          const YPA = row.insertCell();
+          const YPG = row.insertCell();
+          const Fmb = row.insertCell();
+
+          for (child of row.children) {
+            child.className = "border border-blue-500 px-4 py-2";
+          }
+
+          Name.textContent = player.Player.split('_').join(' ');
+          Team.textContent = player.Team;
+          Pos.textContent = player.Pos;
+          Games.textContent = player.G;
+          Atts.textContent = player.Att;
+          Yds.textContent = player.Yds;
+          Tds.textContent = player.TD;
+          Lng.textContent = player.Lng;
+          YPA.textContent = player.YPA;
+          YPG.textContent = player.YPG;
+          Fmb.textContent = player.Fmb;
+          tableBody.appendChild(row);
+        });
+	}).catch(error => {
+		console.log('Error: ', error)
+	})
+});
+</script>
