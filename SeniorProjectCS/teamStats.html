@@ -43,7 +43,14 @@
             </li>
             <li class="mb-2">
               <a href="passingStats.html" class="text-blue-500 hover:underline"
-                >Passing Stats</a
+                >2022 Passing Stats</a
+              >
+            </li>
+            <li class="mb-2">
+              <a
+                href="2023passingStats.html"
+                class="text-blue-500 hover:underline"
+                >2023 Passing Stats</a
               >
             </li>
             <li class="mb-2">
@@ -73,18 +80,60 @@
       <main class="w-3/4 p-4 bg-white overflow-y-auto">
         <div>
           <h1 class="text-3xl font-semibold mb-4">Team Stats</h1>
-          <div id="teamInfo" class="hidden">
-            <!-- Team info will be displayed here -->
-          </div>
           <div
             id="teamList"
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
           ></div>
+          <div id="teamStatsContainer" class="w-full hidden">
+            <button
+              onclick="handleBackButtonClick()"
+              class="bg-blue-700 px-4 py-1 text-white rounded-md"
+            >
+              Back
+            </button>
+            <div class="mb-12">
+              <div class="px-2 py-4 flex flex-col gap-2 border-b">
+                <span class="font-medium">Team Name</span>
+                <span id="teamStat--Name">...</span>
+              </div>
+              <div class="px-2 py-4 border-b grid grid-cols-3">
+                <div class="flex flex-col gap-2">
+                  <span class="font-semibold">Points For</span>
+                  <span id="teamStat--pointsFor">...</span>
+                </div>
+                <div class="flex flex-col gap-2">
+                  <span class="font-semibold">Yards</span>
+                  <span id="teamStat--yards">...</span>
+                </div>
+                <div class="flex flex-col gap-2">
+                  <span class="font-semibold">Turnovers</span>
+                  <span id="teamStat--turnovers">...</span>
+                </div>
+              </div>
+              <div class="px-2 py-4 border-b grid grid-cols-2">
+                <div class="flex flex-col gap-2">
+                  <span class="font-semibold">Completions</span>
+                  <span id="teamStat--completions">...</span>
+                </div>
+                <div class="flex flex-col gap-2">
+                  <span class="font-semibold">Attempts</span>
+                  <span id="teamStat--attempts">...</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h1 class="text-3xl font-semibold mb-4">Team Roster</h1>
+              <table id="teamRosterStats" class="w-full">
+                <tr>
+                  <th class="border p-2">Name</th>
+                  <th class="border p-2">Position</th>
+                  <th class="border p-2">Games</th>
+                </tr>
+              </table>
+            </div>
+          </div>
         </div>
       </main>
-
-      <!-- Chatbot Container -->
-      <div id="chatbotContainer"></div>
     </div>
 
     <!-- Footer -->
@@ -98,9 +147,52 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-      //function to fetch data and populate table
-      window.addEventListener("load", async () => {
-        fetch(
+      //PLAYER STATS
+      //Mapping of team names to team abbreviations
+      teamName_to_abbreviation = {
+        "Arizona Cardinals": "ARI",
+        "Atlanta Falcons": "ATL",
+        "Baltimore Ravens": "BAL",
+        "Buffalo Bills": "BUF",
+        "Carolina Panthers": "CAR",
+        "Chicago Bears": "CHI",
+        "Cincinnati Bengals": "CIN",
+        "Cleveland Browns": "CLE",
+        "Dallas Cowboys": "DAL",
+        "Denver Broncos": "DEN",
+        "Detroit Lions": "DET",
+        "Green Bay Packers": "GNB",
+        "Houston Texans": "HOU",
+        "Indianapolis Colts": "IND",
+        "Jacksonville Jaguars": "JAX",
+        "Kansas City Chiefs": "KCC",
+        "Los Angeles Chargers": "LAC",
+        "Los Angeles Rams": "LAR",
+        "Las Vegas Raiders": "LVR",
+        "Miami Dolphins": "MIA",
+        "Minnesota Vikings": "MIN",
+        "New England Patriots": "NWE",
+        "New Orleans Saints": "NOR",
+        "New York Giants": "NYG",
+        "New York Jets": "NYJ",
+        "Philadelphia Eagles": "PHI",
+        "Pittsburgh Steelers": "PIT",
+        "San Francisco 49ers": "SFO",
+        "Seattle Seahawks": "SEA",
+        "Tampa Bay Buccaneers": "TAM",
+        "Tennessee Titans": "TEN",
+        "Washington Commanders": "WAS",
+      };
+
+      //Function to print players on the team selected by user by using the team abbreviation, team name selected == team abbreviation
+      //Function should also list the players' stats whos team is selected
+      //Players stats are in the database
+
+      //TEAM STATS
+      //function to fetch and render team stats
+      function fetchAndRenderTeamStats(teamName) {
+        // Fetch team stats from the server
+        return fetch(
           "https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-580f5f32-ec77-476b-8da8-33241dd8b7a5/endzone-intel/api",
           {
             method: "PUT",
@@ -110,282 +202,284 @@
                 "Basic YzEyMjkxM2ItNzVkMy00Y2NkLWEzMmQtOTcxYjdiNDgyNDY3OnZYTnVWdmJTelA2NkdTMlJmbmpSM3pLYWI2dzluRDYybzlvRjJVVmpLVDh6YWRpWVBCSlhaSUM4ZU9ZdFZveWE=",
             },
             body: JSON.stringify({
-              type: "team",
-              year: "2023",
+              type: "team", // Required, defines the table name with the year (rushing, passing, defense, receiving)
+              year: "2023", // Required, defines the year for the table (2022, 2023)
+              // id: 103, // Optional, defines the player id
+              // stat: 'Att' // Optional, defines the player stat you want returned (the column name)
             }),
           }
         )
           .then((response) => response.json())
-          .then((data) => {
-            const tablelBody = document.getElementById("teamStatsTable");
+          .then(async (data) => {
+            // const tableBody = document.getElementById('teamStatsTable');
 
-            data.forEach((team) => {
-              const row = tableBody.insertRow();
+            const formattedTeamName = teamName.replace(/\s/g, "_");
+            const teamData = data.find(
+              (team) => team.Team === formattedTeamName
+            );
 
-              const teamName = row.insertCell();
+            document.getElementById("teamStat--Name").textContent = teamName;
+            document.getElementById("teamStat--pointsFor").textContent =
+              teamData.PF;
+            document.getElementById("teamStat--yards").textContent =
+              teamData.Yds;
+            document.getElementById("teamStat--turnovers").textContent =
+              teamData.TOs;
+            document.getElementById("teamStat--completions").textContent =
+              teamData.Cmp;
+            document.getElementById("teamStat--attempts").textContent =
+              teamData.PAtt;
 
-              for (child of row.children) {
-                child.classList.add(
-                  "border",
-                  "border-gray-300",
-                  "px-4",
-                  "py-2"
-                );
-              }
-
-              teamName.textContent = team.teamName;
-            });
-          });
-      });
-      $(document).ready(function () {
-        // Function to fetch team data from the database
-        function fetchTeamData(teamName) {
-          return new Promise(function (resolve, reject) {
-            setTimeout(function () {
-              // Example team data
-              const teamData = {
-                logoSrc: `images/${teamName
-                  .toLowerCase()
-                  .replace(/\s+/g, "-")}.png`, // Example:images/new-england-patriots.png
-              };
-              resolve(teamData);
-            }, 500); // Simulated delay of 500 milliseconds
-          });
-        }
-
-        //function for teams' players to be listed
-        //player.Team == team.Team ??
-        //in the database players have just team abbreviations, teams dont have abbreviations
-        //map team names to abbreviations key value objects
-
-        teamName_to_abbreviation = {
-          "Arizona Cardinals": "ARI",
-          "Atlanta Falcons": "ATL",
-          "Baltimore Ravens": "BAL",
-          "Buffalo Bills": "BUF",
-          "Carolina Panthers": "CAR",
-          "Chicago Bears": "CHI",
-          "Cincinnati Bengals": "CIN",
-          "Cleveland Browns": "CLE",
-          "Dallas Cowboys": "DAL",
-          "Denver Broncos": "DEN",
-          "Detroit Lions": "DET",
-          "Green Bay Packers": "GNB",
-          "Houston Texans": "HOU",
-          "Indianapolis Colts": "IND",
-          "Jacksonville Jaguars": "JAX",
-          "Kansas City Chiefs": "KCC",
-          "Los Angeles Chargers": "LAC",
-          "Los Angeles Rams": "LAR",
-          "Las Vegas Raiders": "LVR",
-          "Miami Dolphins": "MIA",
-          "Minnesota Vikings": "MIN",
-          "New England Patriots": "NWE",
-          "New Orleans Saints": "NOR",
-          "New York Giants": "NYG",
-          "New York Jets": "NYJ",
-          "Philadelphia Eagles": "PHI",
-          "Pittsburgh Steelers": "PIT",
-          "San Francisco 49ers": "SFO",
-          "Seattle Seahawks": "SEA",
-          "Tampa Bay Buccaneers": "TAM",
-          "Tennessee Titans": "TEN",
-          "Washington Commanders": "WAS",
-        };
-
-        //Function to print players on the team selected by user by using the team abbreviation, team name selected == team abbreviation
-        //Function should also list the players' stats whos team is selected
-        //Players stats are in the database
-        function fetchTeamPlayers(teamName) {
-          fetch(
-            "https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-580f5f32-ec77-476b-8da8-33241dd8b7a5/endzone-intel/api",
-            {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization:
-                  "Basic YzEyMjkxM2ItNzVkMy00Y2NkLWEzMmQtOTcxYjdiNDgyNDY3OnZYTnVWdmJTelA2NkdTMlJmbmpSM3pLYWI2dzluRDYybzlvRjJVVmpLVDh6YWRpWVBCSlhaSUM4ZU9ZdFZveWE=",
-              },
-              body: JSON.stringify({
-                type: "player",
-                year: "2023",
-                team: teamName_to_abbreviation[teamName],
-              }),
+            // Render team roster
+            const teamRoster = await getPlayersByTeam(teamName);
+            const teamRosterTable = document.getElementById("teamRosterStats");
+            while (teamRosterTable.rows.length > 1) {
+              teamRosterTable.deleteRow(1);
             }
-          )
-            .then((response) => response.json())
-            .then((data) => {
-              const tablelBody = document.getElementById("teamStatsTable");
+            teamRoster.forEach((player, index) => {
+              const row = document.createElement("tr");
+              if (index % 2 === 0) {
+                row.classList.add("bg-gray-100");
+              }
+              const nameCell = document.createElement("td");
+              nameCell.classList.add("border", "p-2");
+              const positionCell = document.createElement("td");
+              positionCell.classList.add("border", "p-2");
+              const gamesCell = document.createElement("td");
+              gamesCell.classList.add("border", "p-2");
 
-              data.forEach((player) => {
-                const row = tableBody.insertRow();
+              nameCell.textContent = player.Player.replace(/_/g, " ");
+              positionCell.textContent = player.Pos;
+              gamesCell.textContent = player.G;
 
-                const playerName = row.insertCell();
-                const playerStats = row.insertCell();
+              row.appendChild(nameCell);
+              row.appendChild(positionCell);
+              row.appendChild(gamesCell);
 
-                for (child of row.children) {
-                  child.classList.add(
-                    "border",
-                    "border-gray-300",
-                    "px-4",
-                    "py-2"
-                  );
-                }
-
-                playerName.textContent = player.playerName;
-                playerStats.textContent = player.playerStats;
-              });
-            });
-        }
-
-        // Function to render team info
-        function renderTeamInfo(teamName) {
-          fetchTeamData(teamName)
-            .then(function (teamData) {
-              const teamInfoContainer = $("#teamInfo");
-              teamInfoContainer.html(`
-                          <div>
-                            <img src="${teamData.logoSrc}" alt="${teamName}" class="w-full h-32 object-contain mb-2" />
-                            <h2 class="text-lg font-semibold">${teamName}</h2>
-                          </div>
-                        `);
-              teamInfoContainer.removeClass("hidden");
-            })
-            .catch(function (error) {
-              console.error("Error fetching team data:", error);
-            });
-        }
-
-        // Function to handle team click
-        function handleTeamClick(teamName) {
-          renderTeamInfo(teamName);
-          fetchTeamPlayers(teamName);
-        }
-
-        // Function to render team list
-        function renderTeamList() {
-          // Display all team names
-          const teams = [
-            {
-              name: "Arizona Cardinals",
-              logoSrc: "images/arizona-cardinals.png",
-            },
-            { name: "Atlanta Falcons", logoSrc: "images/atlanta-falcons.png" },
-            {
-              name: "Baltimore Ravens",
-              logoSrc: "images/baltimore-ravens.png",
-            },
-            { name: "Buffalo Bills", logoSrc: "images/buffalo-bills.png" },
-            {
-              name: "Carolina Panthers",
-              logoSrc: "images/carolina-panthers.png",
-            },
-            { name: "Chicago Bears", logoSrc: "images/chicago-bears.png" },
-            {
-              name: "Cincinnati Bengals",
-              logoSrc: "images/cincinnati-bengals.png",
-            },
-            {
-              name: "Cleveland Browns",
-              logoSrc: "images/cleveland-browns.png",
-            },
-            { name: "Dallas Cowboys", logoSrc: "images/dallas-cowboys.png" },
-            { name: "Denver Broncos", logoSrc: "images/denver-broncos.png" },
-            { name: "Detroit Lions", logoSrc: "images/detroit-lions.png" },
-            {
-              name: "Green Bay Packers",
-              logoSrc: "images/green-bay-packers.png",
-            },
-            { name: "Houston Texans", logoSrc: "images/houston-texans.png" },
-            {
-              name: "Indianapolis Colts",
-              logoSrc: "images/indianapolis-colts.png",
-            },
-            {
-              name: "Jacksonville Jaguars",
-              logoSrc: "images/jacksonville-jaguars.png",
-            },
-            {
-              name: "Kansas City Chiefs",
-              logoSrc: "images/kansas-city-chiefs.png",
-            },
-            {
-              name: "Los Angeles Chargers",
-              logoSrc: "images/los-angeles-chargers.png",
-            },
-            {
-              name: "Los Angeles Rams",
-              logoSrc: "images/los-angeles-rams.png",
-            },
-            {
-              name: "Las Vegas Raiders",
-              logoSrc: "images/las-vegas-raiders.png",
-            },
-            { name: "Miami Dolphins", logoSrc: "images/miami-dolphins.png" },
-            {
-              name: "Minnesota Vikings",
-              logoSrc: "images/minnesota-vikings.png",
-            },
-            {
-              name: "New England Patriots",
-              logoSrc: "images/new-england-patriots.png",
-            },
-            {
-              name: "New Orleans Saints",
-              logoSrc: "images/new-orleans-saints.png",
-            },
-            { name: "New York Giants", logoSrc: "images/new-york-giants.png" },
-            { name: "New York Jets", logoSrc: "images/new-york-jets.png" },
-            {
-              name: "Philadelphia Eagles",
-              logoSrc: "images/philadelphia-eagles.png",
-            },
-            {
-              name: "Pittsburgh Steelers",
-              logoSrc: "images/pittsburgh-steelers.png",
-            },
-            {
-              name: "San Francisco 49ers",
-              logoSrc: "images/san-fransisco-49ers.png",
-            },
-            {
-              name: "Seattle Seahawks",
-              logoSrc: "images/seattle-seahawks.png",
-            },
-            {
-              name: "Tampa Bay Buccaneers",
-              logoSrc: "images/tampa-bay-buccaneers.png",
-            },
-            {
-              name: "Tennessee Titans",
-              logoSrc: "images/tennessee-titans.png",
-            },
-            {
-              name: "Washington Commanders",
-              logoSrc: "images/washington-commanders.png",
-            },
-          ];
-          const teamListContainer = $("#teamList");
-          teamListContainer.empty(); // Clear existing content
-
-          teams.forEach(function (team) {
-            const teamDiv = $(`
-                        <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
-                          <img src="${team.logoSrc}" alt="${team.name}" class="w-full h-32 object-contain mb-2" />
-                          <h2 class="text-lg font-semibold">${team.name}</h2>
-                        </div>
-                      `);
-            teamDiv.click(function () {
-              handleTeamClick(team.name);
+              teamRosterTable.appendChild(row);
             });
 
-            teamListContainer.append(teamDiv);
+            document
+              .getElementById("teamStatsContainer")
+              .classList.remove("hidden");
+            document.getElementById("teamList").classList.add("hidden");
+          })
+          .catch((error) => {
+            console.error("Error fetching and rendering team stats:", error);
           });
-        }
+      }
 
-        // Call the renderTeamList function to render the team list initially
-        renderTeamList();
+      //function to render team info
+      function renderTeamInfo(teamName) {
+        fetchAndRenderTeamStats(teamName)
+          .then(function (teamData) {
+            // Update team info in the DOM
+            $("#teamName").text(teamName);
+          })
+          .catch(function (error) {
+            console.error("Error fetching team data:", error);
+          });
+      }
+
+      //function to render team stats
+      function renderTeamStats(teamStats) {
+        const teamStatsContainer = $("#teamStats");
+        teamStatsContainer.empty(); // Clear existing content
+
+        teamStats.forEach(function (stat) {
+          const statDiv = $(`
+			               <div class="bg-gray-200 p-4 rounded-md shadow-md">
+			                 <p class="font-semibold">${stat.name}</p>
+			                 <p>${stat.value}</p>
+			               </div>
+			             `);
+          teamStatsContainer.append(statDiv);
+        });
+      }
+
+      //function to handle team click
+      function handleTeamClick(teamName) {
+        console.log("Team clicked:", teamName);
+        renderTeamInfo(teamName);
+      }
+
+      //function to render team list
+      function renderTeamList() {
+        //display all team names
+        const teams = [
+          {
+            name: "Arizona Cardinals",
+            logoSrc: "images/arizona-cardinals.png",
+          },
+          { name: "Atlanta Falcons", logoSrc: "images/atlanta-falcons.png" },
+          {
+            name: "Baltimore Ravens",
+            logoSrc: "images/baltimore-ravens.png",
+          },
+          { name: "Buffalo Bills", logoSrc: "images/buffalo-bills.png" },
+          {
+            name: "Carolina Panthers",
+            logoSrc: "images/carolina-panthers.png",
+          },
+          { name: "Chicago Bears", logoSrc: "images/chicago-bears.png" },
+          {
+            name: "Cincinnati Bengals",
+            logoSrc: "images/cincinnati-bengals.png",
+          },
+          {
+            name: "Cleveland Browns",
+            logoSrc: "images/cleveland-browns.png",
+          },
+          { name: "Dallas Cowboys", logoSrc: "images/dallas-cowboys.png" },
+          { name: "Denver Broncos", logoSrc: "images/denver-broncos.png" },
+          { name: "Detroit Lions", logoSrc: "images/detroit-lions.png" },
+          {
+            name: "Green Bay Packers",
+            logoSrc: "images/green-bay-packers.png",
+          },
+          { name: "Houston Texans", logoSrc: "images/houston-texans.png" },
+          {
+            name: "Indianapolis Colts",
+            logoSrc: "images/indianapolis-colts.png",
+          },
+          {
+            name: "Jacksonville Jaguars",
+            logoSrc: "images/jacksonville-jaguars.png",
+          },
+          {
+            name: "Kansas City Chiefs",
+            logoSrc: "images/kansas-city-chiefs.png",
+          },
+          {
+            name: "Los Angeles Chargers",
+            logoSrc: "images/los-angeles-chargers.png",
+          },
+          {
+            name: "Los Angeles Rams",
+            logoSrc: "images/los-angeles-rams.png",
+          },
+          {
+            name: "Las Vegas Raiders",
+            logoSrc: "images/las-vegas-raiders.png",
+          },
+          { name: "Miami Dolphins", logoSrc: "images/miami-dolphins.png" },
+          {
+            name: "Minnesota Vikings",
+            logoSrc: "images/minnesota-vikings.png",
+          },
+          {
+            name: "New England Patriots",
+            logoSrc: "images/new-england-patriots.png",
+          },
+          {
+            name: "New Orleans Saints",
+            logoSrc: "images/new-orleans-saints.png",
+          },
+          { name: "New York Giants", logoSrc: "images/new-york-giants.png" },
+          { name: "New York Jets", logoSrc: "images/new-york-jets.png" },
+          {
+            name: "Philadelphia Eagles",
+            logoSrc: "images/philadelphia-eagles.png",
+          },
+          {
+            name: "Pittsburgh Steelers",
+            logoSrc: "images/pittsburgh-steelers.png",
+          },
+          {
+            name: "San Francisco 49ers",
+            logoSrc: "images/san-fransisco-49ers.png",
+          },
+          {
+            name: "Seattle Seahawks",
+            logoSrc: "images/seattle-seahawks.png",
+          },
+          {
+            name: "Tampa Bay Buccaneers",
+            logoSrc: "images/tampa-bay-buccaneers.png",
+          },
+          {
+            name: "Tennessee Titans",
+            logoSrc: "images/tennessee-titans.png",
+          },
+          {
+            name: "Washington Commanders",
+            logoSrc: "images/washington-commanders.png",
+          },
+        ];
+        const teamListContainer = $("#teamList");
+        teamListContainer.empty(); //clear existing content
+
+        teams.forEach(function (team) {
+          const teamDiv = $(`
+			                 <div class="bg-gray-200 p-4 rounded-md shadow-md cursor-pointer">
+			                     <img src="${team.logoSrc}" alt="${team.name}" class="w-full h-32 object-contain mb-2" />
+			                     <h2 class="text-lg font-semibold">${team.name}</h2>
+			                   </div>
+			 `);
+          teamDiv.click(function () {
+            handleTeamClick(team.name);
+          });
+
+          teamListContainer.append(teamDiv);
+        });
+      }
+
+      //event delegation to handle click events on the team list
+      $(document).on("click", ".team-item", function () {
+        const teamName = $(this).data("team-name");
+        console.log("Team clicked:", teamName);
+        renderTeamInfo(teamName);
       });
+
+      function handleBackButtonClick() {
+        $("#teamStatsContainer").addClass("hidden");
+        $("#teamList").removeClass("hidden");
+        // clear team stats table
+      }
+
+      async function getPlayersByTeam(teamName) {
+        const positions = ["rushing", "passing", "defense", "receiving"];
+        const years = ["2022", "2023"];
+        const fetchArr = [];
+        positions.forEach((position) => {
+          years.forEach((year) => {
+            fetchArr.push(
+              fetch(
+                `https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-580f5f32-ec77-476b-8da8-33241dd8b7a5/endzone-intel/api`,
+                {
+                  method: "PUT",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization:
+                      "Basic YzEyMjkxM2ItNzVkMy00Y2NkLWEzMmQtOTcxYjdiNDgyNDY3OnZYTnVWdmJTelA2NkdTMlJmbmpSM3pLYWI2dzluRDYybzlvRjJVVmpLVDh6YWRpWVBCSlhaSUM4ZU9ZdFZveWE=",
+                  },
+                  body: JSON.stringify({
+                    type: position,
+                    year: year,
+                  }),
+                }
+              )
+            );
+          });
+        });
+        const response = await Promise.all(fetchArr).then((responses) =>
+          Promise.all(responses.map((response) => response.json()))
+        );
+        const players = response
+          .flat()
+          .filter(
+            (player) => player.Team === teamName_to_abbreviation[teamName]
+          )
+          .map((player) => ({
+            Player: player.Player,
+            Pos: player.Pos,
+            G: player.G ?? player.Games,
+          }));
+        return players;
+      }
+
+      //call the renderTeamList function to render the team list initially
+      renderTeamList();
     </script>
   </body>
 </html>
