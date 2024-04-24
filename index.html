@@ -74,30 +74,80 @@
             class="w-96 h-72 mx-auto"
           />
         </div>
-        <div class="text-center">
-          <form
-            action="#"
-            method="GET"
-            class="max-w-md mx-auto"
-            id="searchForm"
-          >
-            <input
-              type="text"
-              class="w-full px-4 py-2 rounded-full shadow-md border-2 border-gray-300"
-              placeholder="Search..."
-              name="search"
-              id="searchInput"
-            />
-            <button
-              type="submit"
-              class="mt-2 bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600"
+       
+
+        <div class = "flex flex-row space-x-6">
+          
+        <div>
+          
+          <h1 class="text-3xl font-semibold mb-4"> Top Passing Grade </h1>
+          <div class="overflow-x-auto">
+            <table
+              id="passingStatsTable"
+              class="table-auto border-collapse border"
             >
-              Search
-            </button>
-          </form>
-        </div>
-        <div id="searchResults" class="mt-4"></div>
+          <thead>
+            <tr>
+              <th class="border border-blue-700 px-4 py-2"> Player </th>
+              <th class="border border-blue-700 px-4 py-2"> Grade </th>
+            </tr>
+        </thead>
+      </table>
     </div>
+  </div>
+
+  <div>
+    <h1 class="text-3xl font-semibold mb-4"> Top Rushing Grade </h1>
+    <div class="overflow-x-auto">
+      <table
+        id="rushingStatsTable"
+        class="table-auto border-collapse border"
+      >
+        <thead>
+          <tr>
+            <th class="border border-blue-700 px-4 py-2"> Player </th>
+            <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/index.html" class = "hover:underline"> Grade </a></th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+
+  <div>
+    <h1 class="text-3xl font-semibold mb-4">Top Receiving Grade </h1>
+    <div class="overflow-x-auto">
+      <table
+        id="receivingStatsTable"
+        class="table-auto border-collapse border"
+      >
+        <thead>
+          <tr>
+            <th class="border border-blue-700 px-4 py-2"> Player </th>
+            <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/index.html" class = "hover:underline"> Grade </a></th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+
+<div>
+  <h1 class="text-3xl font-semibold mb-4">Top Defense Grade </h1>
+  <div class="overflow-x-auto">
+    <table
+      id="defensiveStatsTable"
+      class="table-auto border-collapse border"
+    >
+      <thead>
+        <tr>
+          <th class="border border-blue-700 px-4 py-2"> Player </th>
+          <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/index.html" class = "hover:underline"> Grade </a></th>
+          
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>
+</div>
 
     <!-- Footer -->
     <footer class="bg-blue-700 text-white p-4 mt-auto">
@@ -105,25 +155,238 @@
         <p class="text-sm">&copy; 2023 Endzone Intel</p>
       </div>
     </footer>
+    </main>
   </body>
 </html>
 
-<!-- Script for Search Bar and Chatbot Integration -->
 <script>
-  const searchForm = document.getElementById("searchForm");
-  const searchInput = document.getElementById("searchInput");
-  const searchResultsContainer = document.getElementById("searchResults");
+  // Function to fetch data from the API and populate the table
+  window.addEventListener('load', async () => {
+	fetch('https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-580f5f32-ec77-476b-8da8-33241dd8b7a5/endzone-intel/api', {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic YzEyMjkxM2ItNzVkMy00Y2NkLWEzMmQtOTcxYjdiNDgyNDY3OnZYTnVWdmJTelA2NkdTMlJmbmpSM3pLYWI2dzluRDYybzlvRjJVVmpLVDh6YWRpWVBCSlhaSUM4ZU9ZdFZveWE="
+		},
+		body: JSON.stringify({
+			type: 'passing', // Required, defines the table name with the year (rushing, passing, defense)
+			year: '2023', // Required, defines the year for the table (2022, 2023)
+			// id: 103, // Optional, defines the player id
+			// stat: 'Att' // Optional, defines the player stat you want returned (the column name)
+		})
+    
+	}).then(response =>
+		response.json()
+	).then(data => {
+   
+		const tableBody = document.getElementById("passingStatsTable");
+    
+    data = data.sort((a,b) => {
+    
+      if(a.grade > b.grade) {
 
-  searchForm.addEventListener("submit", function (event) {
-    event.preventDefault();
+        return -1;
+      }
 
-    const searchTerm = searchInput.value.trim();
+    });
+    
+    
+    data.forEach((player) => {
+     
+          const row = tableBody.insertRow();
+         
+          const Name = row.insertCell();
+          const Grade = row.insertCell();
+        
+         
 
-    // Replace this with actual API search logic
-    // For simplicity, this example just displays a message with the search term
-    const searchResults = document.createElement("p");
-    searchResults.textContent = `Search results for: ${searchTerm}`;
-    searchResultsContainer.innerHTML = "";
-    searchResultsContainer.appendChild(searchResults);
-  });
+            
+          for (child of row.children) {
+      
+            child.className = "border border-blue-500 px-4 py-2";
+            
+          }
+            
+            Name.textContent = player.Player.replaceAll('_', " ");
+        
+          
+          if(player.grade > 90)
+          {
+            Grade.textContent = "S"
+          }
+          else if(player.grade > 80)
+          {
+            Grade.textContent = "A"
+          }
+          else if(player.grade > 70)
+          {
+            Grade.textContent = "B"
+          }
+          else if(player.grade > 60)
+          {
+            Grade.textContent = "C"
+          }
+          else if(player.grade > 50)
+          {
+            Grade.textContent = "D"
+          }
+          else
+          {
+            Grade.textContent = "F"
+          }
+           
+        });
+   
+	}).catch(error => {
+		console.log('Error: ', error)
+	})
+});
 </script>
+
+<script>
+  // Function to fetch data from the API and populate the table
+  window.addEventListener('load', async () => {
+    fetch('https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-580f5f32-ec77-476b-8da8-33241dd8b7a5/endzone-intel/api', {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Basic YzEyMjkxM2ItNzVkMy00Y2NkLWEzMmQtOTcxYjdiNDgyNDY3OnZYTnVWdmJTelA2NkdTMlJmbmpSM3pLYWI2dzluRDYybzlvRjJVVmpLVDh6YWRpWVBCSlhaSUM4ZU9ZdFZveWE="
+      },
+      body: JSON.stringify({
+        type: 'rushing', // Required, defines the table name with the year (rushing, passing, defense)
+        year: '2023', // Required, defines the year for the table (2022, 2023)
+        // id: 103, // Optional, defines the player id
+        // stat: 'Att' // Optional, defines the player stat you want returned (the column name)
+      })
+    }).then(response =>
+      response.json()
+    ).then(data => {
+      const tableBody = document.getElementById("rushingStatsTable");
+
+        data = data.sort((a, b) => {
+
+            if(a.grade > b.grade) {
+
+              return -1;
+            }
+
+        });
+      
+          // Loop through the fetched data and create table rows
+          data.forEach((player) => {
+            const row = tableBody.insertRow();
+            
+            const Name = row.insertCell();
+            const Grade = row.insertCell();
+            
+  
+            for (child of row.children) {
+              child.className = "border border-blue-500 px-4 py-2";
+            }
+  
+            Name.textContent = player.Player.split('_').join(' ');
+           
+            tableBody.appendChild(row);
+          });
+    }).catch(error => {
+      console.log('Error: ', error)
+    })
+  });
+  </script>
+  
+  <script>
+    window.addEventListener('load', async () => {
+     fetch('https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-580f5f32-ec77-476b-8da8-33241dd8b7a5/endzone-intel/api', {
+       method: "PUT",
+       headers: {
+         "Content-Type": "application/json",
+         "Authorization": "Basic YzEyMjkxM2ItNzVkMy00Y2NkLWEzMmQtOTcxYjdiNDgyNDY3OnZYTnVWdmJTelA2NkdTMlJmbmpSM3pLYWI2dzluRDYybzlvRjJVVmpLVDh6YWRpWVBCSlhaSUM4ZU9ZdFZveWE="
+       },
+       body: JSON.stringify({
+         type: 'receiving', // Required, defines the table name with the year (rushing, passing, defense)
+         year: '2023', // Required, defines the year for the table (2022, 2023)
+         // id: 103, // Optional, defines the player id
+         // stat: 'Att' // Optional, defines the player stat you want returned (the column name)
+       })
+     }).then(response =>
+       response.json()
+     ).then(data => {
+       const tableBody = document.getElementById("receivingStatsTable"); 
+
+       data = data.sort((a,b) => {
+
+        if(a.grade > b.grade) {
+
+          return -1;
+        }
+       });
+
+           // Loop through the fetched data and create table rows
+           data.forEach((player) => {
+             const row = tableBody.insertRow();
+   
+             const Name = row.insertCell();
+             const Grade = row.insertCell();
+            
+   
+             for (child of row.children) {
+               child.classList.add("border", "border-blue-500", "px-4", "py-2");
+             }
+   
+             Name.textContent = player.Player.split('_').join(' ');
+             
+           });
+     }).catch(error => {
+       console.log('Error: ', error)
+     })
+   });
+   </script>
+   <script>
+    window.addEventListener('load', async () => {
+      fetch('https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-580f5f32-ec77-476b-8da8-33241dd8b7a5/endzone-intel/api', {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Basic YzEyMjkxM2ItNzVkMy00Y2NkLWEzMmQtOTcxYjdiNDgyNDY3OnZYTnVWdmJTelA2NkdTMlJmbmpSM3pLYWI2dzluRDYybzlvRjJVVmpLVDh6YWRpWVBCSlhaSUM4ZU9ZdFZveWE="
+        },
+        body: JSON.stringify({
+          type: 'defense', // Required, defines the table name with the year (rushing, passing, defense)
+          year: '2023', // Required, defines the year for the table (2022, 2023)
+          // id: 103, // Optional, defines the player id
+          // stat: 'Att' // Optional, defines the player stat you want returned (the column name)
+        })
+      }).then(response =>
+        response.json()
+      ).then(data => {
+        const tableBody = document.getElementById("defensiveStatsTable");
+
+
+        data = data.sort((a,b) => {
+
+          if(a.grade > b.grade) {
+
+            return -1;
+          }
+        });
+
+            // Loop through the fetched data and create table rows
+            data.forEach((player) => {
+              const row = tableBody.insertRow();
+    
+              const Name = row.insertCell();
+              const Grade = row.insertCell();
+              
+    
+              for (child of row.children) {
+                child.classList.add("border", "border-blue-700", "px-4", "py-2");
+              }
+    
+              Name.textContent = player.Player.split('_').join(' ');
+             
+            });
+      }).catch(error => {
+        console.log('Error: ', error)
+      })
+    });
+    </script>
+    
