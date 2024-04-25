@@ -79,7 +79,7 @@
               <thead>
                 <tr>
                   <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/recStats/dec/recPlayer.html" class = "hover:underline"> Player </a></th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/recStats/dec/recGrade.html" class = "hover:underline"> Grade </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/receivingStats.html" class = "hover:underline"> Grade </a></th>
                   <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/recStats/dec/recTeam.html" class = "hover:underline"> Team </a></th>
                   <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/recStats/dec/recPos.html" class = "hover:underline"> Pos </a></th>
                   <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/recStats/dec/recG.html" class = "hover:underline"> Games </a></th>
@@ -88,7 +88,7 @@
                   <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/recStats/dec/recCtchP.html" class = "hover:underline"> CtchP </a></th>
                   <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/recStats/dec/recYds.html" class = "hover:underline"> Yds </a></th>
                   <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/recStats/dec/recYPR.html" class = "hover:underline"> YPR </a></th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/receivingStats.html" class = "hover:underline"> TDs </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/recStats/dec/recTD.html" class = "hover:underline"> TDs </a></th>
                   <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/recStats/dec/recLng.html" class = "hover:underline"> Lng </a></th>
                   <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/recStats/dec/recYPTgt.html" class = "hover:underline"> YPTgt </a></th>
                   <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/recStats/dec/recRPG.html" class = "hover:underline"> RPG </a></th>
@@ -132,10 +132,7 @@
         
     data = data.sort((a,b) => {
 
-        if(b.TD > a.TD)
-        {
-          return -1
-        }
+        return b.grade - a.grade
     });
     
         // Loop through the fetched data and create table rows
@@ -163,7 +160,7 @@
             child.classList.add("border", "border-blue-500", "px-4", "py-2");
           }
 
-          TDs.classList.add("border", "border-blue-500", "px-4", "py-2", "bg-gray-200");
+          Grade.classList.add("border", "border-blue-500", "px-4", "py-2", "bg-gray-200");
 
           Name.textContent = player.Player.split('_').join(' ');
           Team.textContent = player.Team;
@@ -212,3 +209,4 @@
 	})
 });
 </script>
+
