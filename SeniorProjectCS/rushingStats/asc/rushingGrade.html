@@ -24,8 +24,8 @@
       </div>
     </header>
 
-   <!-- NavBar-->
-   <nav class="navbar">
+  <!-- NavBar-->
+  <nav class="navbar">
     <ul>
       <li><a href="/">Home</a></li>
 
@@ -64,13 +64,13 @@
       <li><a href="/SeniorProjectCS/teamStats.html">Team Stats</a></li>
     </ul>
   </nav>
-   
-    <!-- Main Content -->
-   <div class="mx-auto h-screen flex">
+  
+  <!-- Main Content -->
+  <div class="mx-auto h-screen flex">
     <main class="w-full p-4 bg-white overflow-y-auto">
         <!-- Player Stats Content -->
         <div>
-          <h1 class="text-3xl font-semibold mb-4">2023 Rushing Stats</h1>
+          <h1 class="text-3xl font-semibold mb-4">Rushing Stats</h1>
           <div class="overflow-x-auto">
             <table
               id="rushingStatsTable"
@@ -78,18 +78,18 @@
             >
               <thead>
                 <tr>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "rushingPlayer.html" class = "hover:underline"> Player </a></th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "rushingGrade.html" class = "hover:underline"> Grade </a></th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "rushingTeam.html" class = "hover:underline"> Team </a></th>
-                  <th class="border border-blue-700 px-4 py-2"> Pos </a></th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "rushingG.html" class = "hover:underline"> Games </a></th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "rushingAtt.html" class = "hover:underline"> Ampts </a></th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "rushingYds.html" class = "hover:underline"> Yds </a></th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "rushingTD.html" class = "hover:underline"> Tds </a></th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "rushingLng.html" class = "hover:underline"> LNG </a></th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/2023rushingStats/asc/rushingYPA.html" class = "hover:underline"> YPA </a></th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "rushingYPG.html" class = "hover:underline"> YPG </a></th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "rushingFmb.html" class = "hover:underline"> Fmb </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/rushingStats/dec/rushingPlayer.html" class = "hover:underline"> Player </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/rushingStats.html" class = "hover:underline"> Grade </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/rushingStats/dec/rushingTeam.html" class = "hover:underline"> Team </a></th>
+                  <th class="border border-blue-700 px-4 py-2"> Pos </th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/rushingStats/dec/rushingG.html" class = "hover:underline"> Games </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/rushingStats/dec/rushingAtt.html" class = "hover:underline"> Ampts </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/rushingStats/dec/rushingYds.html" class = "hover:underline"> Yds </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/rushingStats/dec/rushingTD.html" class = "hover:underline"> Tds </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/rushingStats/dec/rushingLng.html" class = "hover:underline"> LNG </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/rushingStats/dec/rushingYPA.html" class = "hover:underline"> YPA </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/rushingStats/dec/rushingYPG.html" class = "hover:underline"> YPG </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/rushingStats/dec/rushingFmb.html" class = "hover:underline"> Fmb </a></th>
                 </tr>
               </thead>
             </table>
@@ -118,7 +118,7 @@ window.addEventListener('load', async () => {
 		},
 		body: JSON.stringify({
 			type: 'rushing', // Required, defines the table name with the year (rushing, passing, defense)
-			year: '2023', // Required, defines the year for the table (2022, 2023)
+			year: '2022', // Required, defines the year for the table (2022, 2023)
 			// id: 103, // Optional, defines the player id
 			// stat: 'Att' // Optional, defines the player stat you want returned (the column name)
 		})
@@ -126,14 +126,15 @@ window.addEventListener('load', async () => {
 		response.json()
 	).then(data => {
 		const tableBody = document.getElementById("rushingStatsTable");
-       
+        
         data = data.sort((a,b) => {
 
-            return b.YPA - a.YPA;
+            if(a.grade < b.grade) {
 
+                 return -1;
+            }
         });
 
-       
         // Loop through the fetched data and create table rows
         data.forEach((player) => {
           const row = tableBody.insertRow();
@@ -155,7 +156,7 @@ window.addEventListener('load', async () => {
             child.className = "border border-blue-500 px-4 py-2";
           }
 
-          YPA.className = "border border-blue-500 bg-gray-200 px-4 py-2"
+          Grade.className = "border border-blue-500 bg-gray-200 px-4 py-2"
           
           Name.textContent = player.Player.split('_').join(' ');
           Team.textContent = player.Team;
