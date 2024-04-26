@@ -78,11 +78,11 @@
         </div>
        
 
-        <div class = "flex flex-row space-x-6">
+        <div class = "flex flex-row space-x-6 px-36">
           
         <div>
           
-          <h1 class="text-3xl font-semibold mb-4"> Top Passing Grade </h1>
+          <h1 class="text-2xl font-semibold mb-4"> Top 2023 Passing Grade </h1>
           <div class="overflow-x-auto">
             <table
               id="passingStatsTable"
@@ -99,7 +99,7 @@
   </div>
 
   <div>
-    <h1 class="text-3xl font-semibold mb-4"> Top Rushing Grade </h1>
+    <h1 class="text-2xl font-semibold mb-4"> Top 2023 Rushing Grade </h1>
     <div class="overflow-x-auto">
       <table
         id="rushingStatsTable"
@@ -116,7 +116,7 @@
   </div>
 
   <div>
-    <h1 class="text-3xl font-semibold mb-4">Top Receiving Grade </h1>
+    <h1 class="text-2xl font-semibold mb-4">Top 2023 Receiving Grade </h1>
     <div class="overflow-x-auto">
       <table
         id="receivingStatsTable"
@@ -133,23 +133,23 @@
   </div>
 
 <div>
-  <h1 class="text-3xl font-semibold mb-4">Top Defense Grade </h1>
+  <h1 class="text-2xl font-semibold mb-4">Top 2023 Defense Grade </h1>
   <div class="overflow-x-auto">
     <table
       id="defensiveStatsTable"
       class="table-auto border-collapse border"
     >
       <thead>
-        <tr>
-          <th class="border border-blue-700 px-4 py-2"> Player </th>
-          <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/index.html" class = "hover:underline"> Grade </a></th>
+          <tr>
+            <th class="border border-blue-700 px-4 py-2"> Player </th>
+            <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/index.html" class = "hover:underline"> Grade </a></th>
           
-        </tr>
-      </thead>
-    </table>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
   </div>
-</div>
-</div>
 
     <!-- Footer -->
     <footer class="bg-blue-700 text-white p-4 mt-auto">
@@ -157,7 +157,6 @@
         <p class="text-sm">&copy; 2023 Endzone Intel</p>
       </div>
     </footer>
-    </main>
   </body>
 </html>
 
@@ -193,9 +192,10 @@
     });
     
     
-    data.forEach((player) => {
+    for(let i = 0; i < 5; i++) {
      
-          const row = tableBody.insertRow();
+        player = data[i];  
+        const row = tableBody.insertRow();
          
           const Name = row.insertCell();
           const Grade = row.insertCell();
@@ -237,7 +237,7 @@
             Grade.textContent = "F"
           }
            
-        });
+        };
    
 	}).catch(error => {
 		console.log('Error: ', error)
@@ -267,15 +267,14 @@
 
         data = data.sort((a, b) => {
 
-            if(a.grade > b.grade) {
-
-              return -1;
-            }
+            return b.grade - a.grade
 
         });
       
           // Loop through the fetched data and create table rows
-          data.forEach((player) => {
+          for(let i = 0; i < 5; i++) {
+            
+            const player = data[i]
             const row = tableBody.insertRow();
             
             const Name = row.insertCell();
@@ -287,9 +286,34 @@
             }
   
             Name.textContent = player.Player.split('_').join(' ');
-           
-            tableBody.appendChild(row);
-          });
+
+              if(player.grade > 90)
+            {
+              Grade.textContent = "S"
+            }
+            else if(player.grade > 80)
+            {
+              Grade.textContent = "A"
+            }
+            else if(player.grade > 70)
+            {
+              Grade.textContent = "B"
+            }
+            else if(player.grade > 60)
+            {
+              Grade.textContent = "C"
+            }
+            else if(player.grade > 50)
+            {
+              Grade.textContent = "D"
+            }
+            else
+            {
+              Grade.textContent = "F"
+            }
+            
+              tableBody.appendChild(row);
+          };
     }).catch(error => {
       console.log('Error: ', error)
     })
@@ -317,15 +341,14 @@
 
        data = data.sort((a,b) => {
 
-        if(a.grade > b.grade) {
-
-          return -1;
-        }
+        return b.grade - a.grade
        });
 
            // Loop through the fetched data and create table rows
-           data.forEach((player) => {
-             const row = tableBody.insertRow();
+           for(let i = 0; i < 5; i++) {
+            const player = data[i] 
+            
+            const row = tableBody.insertRow();
    
              const Name = row.insertCell();
              const Grade = row.insertCell();
@@ -336,8 +359,33 @@
              }
    
              Name.textContent = player.Player.split('_').join(' ');
+
+             if(player.grade > 90)
+            {
+              Grade.textContent = "S"
+            }
+            else if(player.grade > 80)
+            {
+              Grade.textContent = "A"
+            }
+            else if(player.grade > 70)
+            {
+              Grade.textContent = "B"
+            }
+            else if(player.grade > 60)
+            {
+              Grade.textContent = "C"
+            }
+            else if(player.grade > 50)
+            {
+              Grade.textContent = "D"
+            }
+            else
+            {
+              Grade.textContent = "F"
+            }
              
-           });
+           };
      }).catch(error => {
        console.log('Error: ', error)
      })
@@ -365,14 +413,13 @@
 
         data = data.sort((a,b) => {
 
-          if(a.grade > b.grade) {
-
-            return -1;
-          }
+          return b.grade - a.grade
         });
 
             // Loop through the fetched data and create table rows
-            data.forEach((player) => {
+            for(let i = 0; i < 5; i++) {
+              const player = data[i]
+              
               const row = tableBody.insertRow();
     
               const Name = row.insertCell();
@@ -384,8 +431,33 @@
               }
     
               Name.textContent = player.Player.split('_').join(' ');
+
+              if(player.grade > 90)
+              {
+                Grade.textContent = "S"
+              }
+              else if(player.grade > 80)
+              {
+                Grade.textContent = "A"
+              }
+              else if(player.grade > 70)
+              {
+                Grade.textContent = "B"
+              }
+              else if(player.grade > 60)
+              {
+                Grade.textContent = "C"
+              }
+              else if(player.grade > 50)
+              {
+                Grade.textContent = "D"
+              }
+              else
+              {
+                Grade.textContent = "F"
+              }
              
-            });
+            };
       }).catch(error => {
         console.log('Error: ', error)
       })
