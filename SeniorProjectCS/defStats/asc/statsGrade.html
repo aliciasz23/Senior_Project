@@ -79,7 +79,7 @@
               <thead>
                 <tr>
                   <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/defStats/dec/statsPlayer.html" class = "hover:underline"> Player </a></th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/defStats/dec/statsGrade.html" class = "hover:underline"> Grade </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/defensiveStats.html" class = "hover:underline"> Grade </a></th>
                   <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/defStats/dec/statsTeam.html" class = "hover:underline"> Team </a></th>
                   <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/defStats/dec/statsPos.html" class = "hover:underline"> Pos </a></th>
                   <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/defStats/dec/statsG.html" class = "hover:underline"> Games </a></th>
@@ -91,7 +91,7 @@
                   <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/defStats/dec/statsFF.html" class = "hover:underline"> FF </a></th>
                   <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/defStats/dec/statsFmb.html" class = "hover:underline"> Fmbs </a></th>
                   <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/defStats/dec/statsFR.html" class = "hover:underline"> FR </a></th>
-                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/defensiveStats.html" class = "hover:underline"> Scks </a></th>
+                  <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/defStats/dec/statsSk.html" class = "hover:underline"> Scks </a></th>
                   <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/defStats/dec/statsTak.html" class = "hover:underline"> Taks </a></th>
                   <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/defStats/dec/statsTFL.html" class = "hover:underline"> TFL </a></th>
                   <th class="border border-blue-700 px-4 py-2"><a href = "/SeniorProjectCS/defStats/dec/statsQBhits.html" class = "hover:underline"> QBHs </a></th>
@@ -133,7 +133,7 @@ window.addEventListener('load', async () => {
     const tableBody = document.getElementById("defensiveStatsTable");
           data = data.sort((a,b) => {
 
-            return a.Sk - b.Sk
+            return a.grade - b.grade
           });    
 
 
@@ -164,7 +164,7 @@ window.addEventListener('load', async () => {
             child.classList.add("border", "border-blue-700", "px-4", "py-2");
           }
           
-          Scks.classList.add("border", "border-blue-700", "px-4", "py-2", "bg-gray-200");
+          Grade.classList.add("border", "border-blue-700", "px-4", "py-2", "bg-gray-200");
 
           Name.textContent = player.Player.split('_').join(' ');
           Team.textContent = player.Team;
