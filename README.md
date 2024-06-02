@@ -5,6 +5,9 @@
 -  SQL 
 -  Database: Cockroachlabs
 -  Hosting/Deployment: DigitalOcean
+
+🏈 Data Resources
+- Football Stats: Data obtained from [Pro Football Focus](https://premium.pff.com/nfl/teams/2023/REGPO)
   
 🍿 Video 
 
