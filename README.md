@@ -1,3 +1,1 @@
-# senior-project
-
-hello... dundundun jgrisdfgajhlearuig ;dsfsdfjodsghohpiwe
+Senior Project
