@@ -8,6 +8,8 @@
 
 🏈 Data Resources
 - Football Stats: Data obtained from [Pro Football Focus](https://premium.pff.com/nfl/teams/2023/REGPO)
+
+👾 [Endzone Intel](https://endzone-intel.vercel.app)
   
 🍿 Video 
 
